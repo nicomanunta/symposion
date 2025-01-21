@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_dress_codes', function (Blueprint $table) {
             $table->id();
+            $table->string('dress_code_name', 80);
             $table->timestamps();
         });
     }
