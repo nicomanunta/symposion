@@ -19,8 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
+        'phone',
+        'region',
+        'city',
         'password',
+        'img',
     ];
 
     /**
@@ -44,5 +49,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // relazione con tabella events
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
+
+    // relazione many to many con tabella events
+    public function favoriteEvents(){
+        return $this->belongsToMany(Event::class, 'favorites', 'user_id', 'event_id');
     }
 }
