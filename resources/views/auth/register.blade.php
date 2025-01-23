@@ -95,7 +95,7 @@
         {{-- img --}}
         <div class="mt-4">
             <x-input-label for="img" :value="__('Immagine Profilo')" />
-            <x-text-input id="img" class="block mt-1 w-full " type="file" name="img" required autocomplete="img" placeholder="Immagine" value="{{ old('img')}}" required/>
+            <x-text-input id="img" class="block mt-1 w-full " type="file" name="img" required autocomplete="img" placeholder="Immagine"  />
             <x-input-error :messages="$errors->get('img')" class="mt-2" />
         </div>
 
