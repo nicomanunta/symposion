@@ -8,7 +8,6 @@
             <x-input-label for="name" :value="__('Nome')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required autocomplete="name" placeholder="Nome" value="{{ old('name')}}" required/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />  
-                <button class="btn btn-primary"></button>  
         </div>
 
         <!-- Surname -->

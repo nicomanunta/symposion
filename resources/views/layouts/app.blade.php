@@ -15,7 +15,7 @@
 
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/css/app.css','resources/scss/app.scss', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen ">
