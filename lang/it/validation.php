@@ -178,6 +178,56 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+            'required' => 'Il nome è obbligatorio.',
+            'string' => 'Il nome deve essere un testo valido.',
+            'max' => 'Il nome non può superare i 255 caratteri.',
+        ],
+        'surname' => [
+            'required' => 'Il cognome è obbligatorio.',
+            'string' => 'Il cognome deve essere un testo valido.',
+            'max' => 'Il cognome non può superare i 255 caratteri.',
+        ],
+        'email' => [
+            'required' => 'La email è obbligatoria.',
+            'string' => 'La email deve essere un testo valido.',
+            'lowercase' => 'La email deve essere tutta in minuscolo.',
+            'email' => 'La email deve essere una email valida.',
+            'max' => 'La email non può superare i 255 caratteri.',
+            'unique' => 'Questa email è già registrata.',
+        ],
+        'phone' => [
+            'nullable' => 'Il numero di telefono non è obbligatorio.',
+            'string' => 'Il numero di telefono deve essere un testo valido.',
+            'max' => 'Il numero di telefono non può superare le 15 cifre.',
+        ],
+        'region' => [
+            'required' => 'La regione è obbligatoria.',
+            'string' => 'La regione deve essere valida.',
+            'max' => 'La regione non può superare i 50 caratteri.',
+        ],
+        'city' => [
+            'required' => 'La città è obbligatoria.',
+            'string' => 'La città deve essere valida.',
+            'max' => 'La città non può superare i 50 caratteri.',
+        ],
+        'password' => [
+            'required' => 'La password è obbligatoria.',
+            'confirmed' => 'Le due password non corrispondono.',
+            'letters' => 'Il campo :attribute deve contenere almeno una lettera.',
+            'mixed' => 'Il campo :attribute deve contenere almeno una lettera maiuscola e una minuscola.',
+            'numbers' => 'Il campo :attribute deve contenere almeno un numero.',
+            'symbols' => 'Il campo :attribute deve contenere almeno un simbolo.',
+            'uncompromised' => 'Il dato :attribute è apparso in una fuga di dati. Si prega di scegliere un diverso :attribute.',
+        ],
+        'img' => [
+            'nullable' => 'L\'immagine profilo non è obbligatoria.',
+            'image' => 'L\'immagine profilo deve essere un\'immagine valida.',
+            'mimes' => 'L\'immagine profilo deve essere un file di tipo: jpeg, png, jpg.',
+            'max' => 'L\'immagine profilo non può superare i 2048 kilobyte di spazio.',
+        ]
+
+
     ],
 
     /*
