@@ -6,28 +6,29 @@
         <!-- Name -->
         <div class="form-group mb-3">
             <x-input-label for="name" :value="__('Nome')" />
-            <input class="form-control mt-1" type="text" name="name" id="name" placeholder="Nome" value="{{ old('name')}}" required>
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />    
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required autocomplete="name" placeholder="Nome" value="{{ old('name')}}" required/>
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />  
+                <button class="btn btn-primary"></button>  
         </div>
 
         <!-- Surname -->
         <div class="form-group mb-3">
             <x-input-label for="surname" :value="__('Cognome')" />
-            <input class="form-control mt-1" type="text" name="surname" id="surname" placeholder="Cognome" value="{{ old('surname')}}" required>
+            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" required autocomplete="surname" placeholder="Cognome" value="{{ old('surname')}}" required/>
             <x-input-error :messages="$errors->get('surname')" class="mt-2" />    
         </div>
 
         <!-- Email  -->
         <div class="form-group mb-3">
             <x-input-label for="email" :value="__('Email')" />
-            <input class="form-control mt-1" type="text" name="email" id="email" placeholder="Cognome" value="{{ old('email')}}" required>
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="email" placeholder="Email" value="{{ old('email')}}" required/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />    
         </div>
         
         <!-- Phone -->
         <div class="form-group mb-3">
             <x-input-label for="phone" :value="__('Telefono')" />
-            <input class="form-control mt-1" type="text" name="phone" id="phone" placeholder="Cognome" value="{{ old('phone')}}" >
+            <x-text-input id="phone" class="block mt-1 w-full input-number" type="number" name="phone" required autocomplete="phone" placeholder="Telefono" value="{{ old('phone')}}" required/>
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />    
         </div>
 
@@ -35,6 +36,7 @@
         <div class="form-group mb-3">
             <x-input-label for="region" :value="__('Regione')" />
             <select class="form-control mt-1" name="region" id="region">
+                <option value="">Seleziona una Regione </option>
                 <option value="Abruzzo {{old('region') == 'Uomo' ? 'selected' : ''}}">Abruzzo</option>
                 <option value="Basilicata">Basilicata</option>
                 <option value="Calabria">Calabria</option>
@@ -62,7 +64,7 @@
         <!-- City -->
         <div class="form-group mb-3">
             <x-input-label for="city" :value="__('Città')" />
-            <input class="form-control mt-1" type="text" name="city" id="city" placeholder="Cognome" value="{{ old('city')}}" >
+            <x-text-input id="city" class="block mt-1 w-full " type="text" name="city" required autocomplete="city" placeholder="Città" value="{{ old('city')}}" required/>
             <x-input-error :messages="$errors->get('city')" class="mt-2" />    
         </div>
 
@@ -74,7 +76,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required autocomplete="new-password" placeholder="Password"/>
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -85,7 +87,7 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" required autocomplete="new-password" placeholder="Conferma Password"/>
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
