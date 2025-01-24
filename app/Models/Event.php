@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['user_id', 'location_id', 'dress_code_id', 'event_title', 'event_subtitle', 'event_description', 'event_region', 'event_city', 'event_address', 'event_date', 'event_start', 'event_end', 'event_price'];
+    protected $fillable = ['user_id', 'location_id', 'dress_code_id', 'event_title', 'event_subtitle', 'event_description', 'event_region', 'event_city', 'event_address', 'event_date', 'event_start', 'event_end', 'event_price', 'event_img'];
 
     // relazione con tabella users
     public function user(){

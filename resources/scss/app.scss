@@ -13,14 +13,16 @@
 .title-font{
     font-family: "Poppins", serif;
     font-weight: 700;
-    font-style: normal;
-    font-size: 2.5rem;
+    font-style: normal;    
+}
+h1.title-font{
+    font-size: 3rem;
 }
 .subtitle-font{
     font-family: "Lato", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 .text-font{
     font-family: "Poppins", serif;
@@ -38,10 +40,17 @@
 // COLOR CLASS
 .title-color{
     color: #f2cf4a; //giallo acceso
-    text-shadow: 3px 3px 3px #e24b40; //rosso brillante
+}
+h1.title-color{
+    text-shadow: 3px 3px 0px #e24b40; //rosso brillante
+}
+h2.title-color{
+    text-shadow: 2px 2px 0px #e24b40; //rosso brillante
+
 }
 .subtitle-color{
     color: #d1b83f; //giallo scuro
+
 }
 .text-color{
     color: #4f4f4f; //grigio scuro
@@ -57,7 +66,8 @@
 }
 .section-bgcolor{
     background-color: #fff5d1; //giallo tenue // or #f4f4f4 (grigio chiaro)
-
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 // RIMUOVERE FRECCETTE INPUT NUMBER
@@ -70,7 +80,17 @@
     -moz-appearance: textfield;
 }
 
-// NAVIGATION BOTTOM
-.header-bottom{
-    bottom: 0px;
+// INDEX and SHOW PAGE
+.width-index{
+    width: 45%;
+}
+.width-show{
+    width: 55%;
+}
+label{
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    color: #4f4f4f;
 }

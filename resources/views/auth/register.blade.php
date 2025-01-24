@@ -36,26 +36,26 @@
             <x-input-label for="region" :value="__('Regione')" />
             <select class="form-control mt-1" name="region" id="region">
                 <option value="">Seleziona una Regione </option>
-                <option value="Abruzzo {{old('region') == 'Uomo' ? 'selected' : ''}}">Abruzzo</option>
-                <option value="Basilicata">Basilicata</option>
-                <option value="Calabria">Calabria</option>
-                <option value="Campania">Campania</option>
-                <option value="Emilia-Romagna">Emilia-Romagna</option>
-                <option value="Friuli-Venezia Giulia">Friuli-Venezia Giulia</option>
-                <option value="Lazio">Lazio</option>
-                <option value="Liguria">Liguria</option>
-                <option value="Lombardia">Lombardia</option>
-                <option value="Marche">Marche</option>
-                <option value="Molise">Molise</option>
-                <option value="Piemonte">Piemonte</option>
-                <option value="Puglia">Puglia</option>
-                <option value="Sardegna">Sardegna</option>
-                <option value="Sicilia">Sicilia</option>
-                <option value="Toscana">Toscana</option>
-                <option value="Trentino-Alto Adige">Trentino-Alto Adige</option>
-                <option value="Umbria">Umbria</option>
-                <option value="Valle d'Aosta">Valle d'Aosta</option>
-                <option value="Veneto">Veneto</option>
+                <option value="Abruzzo" {{old('region') == 'Abruzzo' ? 'selected' : ''}}>Abruzzo</option>
+                <option value="Basilicata" {{old('region') == 'Basilicata' ? 'selected' : ''}}>Basilicata</option>
+                <option value="Calabria" {{old('region') == 'Calabria' ? 'selected' : ''}}>Calabria</option>
+                <option value="Campania" {{old('region') == 'Campania' ? 'selected' : ''}}>Campania</option>
+                <option value="Emilia-Romagna" {{old('region') == 'Emilia-Romagna' ? 'selected' : ''}}>Emilia-Romagna</option>
+                <option value="Friuli-Venezia Giulia" {{old('region') == 'Friuli-Venezia Giulia' ? 'selected' : ''}}>Friuli-Venezia Giulia</option>
+                <option value="Lazio" {{old('region') == 'Lazio' ? 'selected' : ''}}>Lazio</option>
+                <option value="Liguria" {{old('region') == 'Liguria' ? 'selected' : ''}}>Liguria</option>
+                <option value="Lombardia" {{old('region') == 'Lombardia' ? 'selected' : ''}}>Lombardia</option>
+                <option value="Marche" {{old('region') == 'Marche' ? 'selected' : ''}}>Marche</option>
+                <option value="Molise" {{old('region') == 'Molise' ? 'selected' : ''}}>Molise</option>
+                <option value="Piemonte" {{old('region') == 'Piemonte' ? 'selected' : ''}}>Piemonte</option>
+                <option value="Puglia" {{old('region') == 'Puglia' ? 'selected' : ''}}>Puglia</option>
+                <option value="Sardegna" {{old('region') == 'Sardegna' ? 'selected' : ''}}>Sardegna</option>
+                <option value="Sicilia" {{old('region') == 'Sicilia' ? 'selected' : ''}}>Sicilia</option>
+                <option value="Toscana" {{old('region') == 'Toscana' ? 'selected' : ''}}>Toscana</option>
+                <option value="Trentino-Alto Adige" {{old('region') == 'Trentino-Alto Adige' ? 'selected' : ''}}>Trentino-Alto Adige</option>
+                <option value="Umbria" {{old('region') == 'Umbria' ? 'selected' : ''}}>Umbria</option>
+                <option value="Valle d'Aosta" {{old('region') == 'Valle d\'Aosta' ? 'selected' : ''}}>Valle d'Aosta</option>
+                <option value="Veneto" {{old('region') == 'Veneto' ? 'selected' : ''}}>Veneto</option>
             </select>
             <x-input-error :messages="$errors->get('region')" class="mt-2" />    
         </div>

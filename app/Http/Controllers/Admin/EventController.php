@@ -29,7 +29,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $locations = EventLocation::all();
+        $dressCodes = EventDressCode::all();
+
+        return view('admin.events.create', compact('locations', 'dressCodes'));
+        
     }
 
     /**
@@ -45,7 +49,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('admin.events.index');
     }
 
     /**
