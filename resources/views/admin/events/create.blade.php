@@ -10,9 +10,9 @@
 
                         {{-- event_title --}}
                         <div class="col-6">
-                            <label class="mb-1" for="event_tile">Titolo</label>
-                            <input class="form-control" type="text" name="event_tile" id="event_tile" placeholder="Titolo" value="{{old('event_tile')}}" required>
-                            @error('event_tile')
+                            <label class="mb-1" for="event_title">Titolo</label>
+                            <input class="form-control" type="text" name="event_title" id="event_title" placeholder="Titolo" value="{{old('event_title')}}" required>
+                            @error('event_title')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
@@ -82,7 +82,7 @@
                         {{-- galleries --}}
                         <div class="col-6">
                             <label class="mb-1" for="galleries">Immagini secondarie</label>
-                            <input class="form-control" type="file" name="galleries[]" id="galleries"  accept="image/*" >
+                            <input class="form-control" type="file" name="galleries[]" id="galleries"  accept="image/*" multiple>
                             @error('galleries.*')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror

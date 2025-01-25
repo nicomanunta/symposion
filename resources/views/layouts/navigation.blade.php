@@ -17,18 +17,18 @@
             <div class=" sm:flex sm:items-center sm:ms-6">
                 <!-- Navigation Links -->
                 <div class="">
-                    <a class="text-decoration-none me-2" :href="route('admin.events.index')">
+                    <a class="text-decoration-none me-2" href="{{ route('admin.events.index') }}">
                         {{ __('Homepage') }}
                     </a>
-                    <a class="text-decoration-none me-2" :href="route('profile.edit')">
+                    <a class="text-decoration-none me-2" href="{{ route('profile.edit') }}">
                         Preferiti
                     </a>
-                    <a class="text-decoration-none me-2" :href="route('profile.edit')">
+                    <a class="text-decoration-none me-2" href="{{ route('profile.edit') }}">
                         Modifica profilo
                     </a>
                     <form class="d-inline me-2" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a :href="route('logout')"
+                        <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
                             {{ __('Log Out') }}
