@@ -1,8 +1,8 @@
 <x-style-layout>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-9 my-5 px-4 py-3 section-bgcolor">
-                <h1 class="mt-3 text-center title-font title-color text-uppercase">Creao il tuo evento</h1>
+            <div class="col-9 my-5 px-4 py-2 section-bgcolor">
+                <h1 class="mb-4 mt-2 text-center title-font title-color text-uppercase">Creao il tuo evento</h1>
                 {{-- FORM CREAZIONE EVENTO --}}
                 <form action="{{route('admin.events.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="form-group mt-4 mb-3 row d-flex align-content-between">
-                        <h2 class="title-font title-color text-uppercase text-center mb-3">Luogo Data e Orari</h2>
+                        <h2 class="title-font title-color text-uppercase text-center mb-3">Luogo, Data e Orari</h2>
                         {{-- event_region --}}
                         <div class="col-4">
                             <label class="mb-1" for="event_region">Regione</label>
