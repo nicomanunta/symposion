@@ -19,9 +19,10 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.events.index');
+        $events = Event::all();
+        return view('admin.events.index', compact('events'));
     }
 
     /**
@@ -90,7 +91,10 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $locations = EventLocation::all();
+        $dressCodes = EventDressCode::all();
+        return view('admin.events.edit', compact('event', 'locations', 'dressCodes'));
+        
     }
 
     /**
@@ -98,7 +102,43 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        //dati inseriti nel form
+        $form_data = $request->all();
+
+        
+        // salvataggio immagine primaria nella cartella 'event_img' all'interno di storage
+        if ($request->hasFile('event_img')) {
+             // cancello l'immagine esistente se presente
+            if ($event->event_img) {
+                Storage::disk('public')->delete($event->event_img);
+            }
+            // e aggiorna il percorso nel form_data
+            $form_data['event_img'] = $request->file('event_img')->store('event_img', 'public');
+        }
+        
+        $event->update($form_data);  // aggiorno le modifiche
+        
+        
+        // salvataggio immagini galleria nella cartella gallery_img all'interni di storage
+        if ($request->hasFile('galleries')) {
+            // cancello le immagini della galleria esistenti se necessario
+            foreach ($event->galleries as $existingGallery) {
+                Storage::disk('public')->delete($existingGallery->image_path);
+                $existingGallery->delete(); // elimino il record dalla tabella galleries
+            }
+            foreach ($request->file('galleries') as $galleryImage) {
+                // salva l'immagine 
+                $galleryPath = $galleryImage->store('gallery_img', 'public');
+                
+                // associo ogni immagine della tabella galleries all'evento
+                $event->galleries()->create([
+                    'image_path' => $galleryPath,
+                    'event_id' => $event->id,
+                ]);
+                
+            }
+        }
+        return redirect()->route('admin.events.index');
     }
 
     /**

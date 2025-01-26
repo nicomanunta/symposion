@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-9 my-5 px-4 py-2 section-bgcolor">
-                <h1 class="mb-4 mt-2 text-center title-font title-color text-uppercase">Creao il tuo evento</h1>
+                <h1 class="mb-4 mt-2 text-center title-font title-color text-uppercase">Crea il tuo evento</h1>
                 {{-- FORM CREAZIONE EVENTO --}}
                 <form action="{{route('admin.events.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -61,7 +61,7 @@
                         <div class="col-4 ">
                             <label class="mb-1" for="event_price">Prezzo </label>
                             <div class="input-group">
-                                <input class="form-control input-number" type="number" name="event_price" id="event_price" placeholder="Prezzo per accedere &euro;" value="{{old('event_price')}}" step="0.01" min="0">
+                                <input class="form-control input-number" type="number" name="event_price" id="event_price" placeholder="Prezzo per accedere" value="{{old('event_price')}}" step="0.01" min="0">
                                 <span class="input-group-text">&euro;</span>
                             </div>
                             @error('event_price')

@@ -11,6 +11,20 @@
                     </button>
                 </a>
             </div>
+            <div class="col-12">
+                @foreach ($events as $event)
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">{{$event->event_title}}</h5>
+                        <a href="{{route('admin.events.edit', ['event' => $event->id])}}">
+                            <button class="btn btn-primary">
+                                modifica evento
+                            </button>
+                        </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         
         <div class="row width-show border-1 ms-0">
