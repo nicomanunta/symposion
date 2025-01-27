@@ -19,9 +19,18 @@ class FavoriteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = auth()->user(); 
+        $favorites = $user->favoriteEvents; 
+
+        $selectedEvent = null;
+
+        if ($request->has('event')) {
+            $selectedEvent = Event::find($request->input('event'));
+        }
+
+        return view('admin.favorites.index', compact('user', 'favorites', 'selectedEvent'));
     }
 
     /**

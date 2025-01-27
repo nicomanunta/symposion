@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
+<nav x-data="{ open: false }" class="nav-bgcolor border-b  ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -20,8 +20,11 @@
                     <a class="text-decoration-none me-2" href="{{ route('admin.events.index') }}">
                         {{ __('Homepage') }}
                     </a>
-                    <a class="text-decoration-none me-2" href="{{ route('profile.edit') }}">
+                    <a class="text-decoration-none me-2" href="{{ route('admin.favorites.index') }}">
                         Preferiti
+                    </a>
+                    <a class="text-decoration-none me-2" href="{{ route('profile.show') }}">
+                        Profilo
                     </a>
                     <a class="text-decoration-none me-2" href="{{ route('profile.edit') }}">
                         Modifica profilo

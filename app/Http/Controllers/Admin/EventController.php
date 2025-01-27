@@ -22,8 +22,16 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $events = Event::all();
-        return view('admin.events.index', compact('events'));
+        $selectedEvent = null;
+
+        // Se è presente un parametro `event`, carica l'evento selezionato
+        if ($request->has('event')) {
+            $selectedEvent = Event::find($request->input('event'));
+        }
+
+        return view('admin.events.index', compact('events', 'selectedEvent'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
