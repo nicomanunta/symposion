@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="container d-flex">
        
+        {{-- ELENCO EVENTI --}}
         <div class="row width-index border-1 me-0">
             <div class="col-12">
                 <h1 class="title-color">I tuoi eventi preferiti</h1>
@@ -20,7 +21,7 @@
             </div>
         </div>
 
-       
+       {{-- DETTAGLI EVENTI --}}
         <div class="row width-show border-1 ms-0">
             @if ($selectedEvent)
                 <div class="col-12">

@@ -97,3 +97,39 @@ label{
     font-size: 1rem;
     color: #4f4f4f;
 }
+
+.border-filter-region, .border-filter-location, .border-filter-dress-code, .border-filter-date{
+    border-right: 0.5px solid rgba(128, 128, 128, 0.186);
+    background-color: transparent;
+    
+    
+    &:hover{
+        background-color: #f7e4a18d;
+        border-radius: 10px;
+        border-right: 0px;
+        border-left: 0px;
+    }
+    
+}
+.border-filter-price, .border-filter-location, .border-filter-dress-code, .border-filter-date{
+    border-left: 0.5px solid rgba(128, 128, 128, 0.186);
+    &:hover{
+        background-color: #d1b93f6e;
+        border-radius: 10px;
+        border-right: 0px;
+        border-left: 0px;
+    }
+}
+.border-filter-region:hover + .border-filter-location{
+    border-left: 0px !important;
+}
+
+
+.select-filter{
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+    background-image: none;
+    padding: 8px 12px ;
+    width: 100%;
+}
