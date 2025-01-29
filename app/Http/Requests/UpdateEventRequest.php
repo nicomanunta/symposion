@@ -35,8 +35,8 @@ class UpdateEventRequest extends FormRequest
             'event_city' => ['required', 'string', 'max:50'],
             'event_address' => ['required', 'string', 'max:100'],
             'event_date' => ['required', 'date', 'after_or_equal:today'],
-            'event_start' => ['required', 'date_format:H:i'],
-            'event_end' => ['required', 'date_format:H:i'],
+            'event_start' => ['required'],
+            'event_end' => ['required'],
         ];
     }
 
@@ -96,10 +96,8 @@ class UpdateEventRequest extends FormRequest
             'event_date.after_or_equal' => 'La data deve essere oggi o successiva.',
 
             'event_start.required' => 'L\'orario di inizio deve essere obbligatorio.',
-            'event_start.date_format' => 'L\'orario di inizio deve essere nel formato HH:MM.',
 
             'event_end.required' => 'L\'orario di fine deve essere obbligatorio.',
-            'event_end.date_format' => 'L\'orario di fine deve essere nel formato HH:MM.',
 
         ];
     }

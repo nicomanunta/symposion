@@ -13,6 +13,8 @@ use App\Models\EventDressCode;
 use App\Models\EventLocation;
 use App\Models\Favorite;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+
 
 class EventController extends Controller
 {
@@ -23,13 +25,18 @@ class EventController extends Controller
     {
         $events = Event::all();
         $selectedEvent = null;
+        $galleries = [];
 
         // Se è presente un parametro `event`, carica l'evento selezionato
         if ($request->has('event')) {
             $selectedEvent = Event::find($request->input('event'));
+            // Se l'evento è stato trovato, carica le immagini associate
+            if ($selectedEvent) {
+                $galleries = $selectedEvent->galleries; // Ottieni le gallerie associate all'evento
+            }
         }
 
-        return view('admin.events.index', compact('events', 'selectedEvent'));
+        return view('admin.events.index', compact('events', 'selectedEvent', 'galleries'));
     }
     
 
@@ -91,7 +98,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('admin.events.index');
+        $galleries = $event->galleries;
+        return view('admin.events.index',compact('event', 'galleries'));
     }
 
     /**
