@@ -192,3 +192,32 @@ h2.title-color{
 .position-fixed{
     right: 0;
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.carousel:hover .carousel-control-prev,
+.carousel:hover .carousel-control-next {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Rimuove il focus visivo sui pulsanti */
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+// .carousel-indicators{
+//     width: 10px;
+//     height: 10px;
+//     border-top: 0;
+//     border-bottom: 0;
+//     border-radius: 50px;
+//     border: 1px solid transparent;
+// }

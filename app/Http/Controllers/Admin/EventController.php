@@ -23,21 +23,21 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+        // recupero tutti gli eventi
         $events = Event::all();
         $selectedEvent = null;
-        $galleries = [];
-
-        // Se è presente un parametro `event`, carica l'evento selezionato
+    
+        // recupero tutte le gallerie per tutti gli eventi
+        $allGalleries = Gallery::whereIn('event_id', $events->pluck('id'))->get();
+    
+        // se è presente un parametro `event`, carica l'evento selezionato
         if ($request->has('event')) {
             $selectedEvent = Event::find($request->input('event'));
-            // Se l'evento è stato trovato, carica le immagini associate
-            if ($selectedEvent) {
-                $galleries = $selectedEvent->galleries; // Ottieni le gallerie associate all'evento
-            }
         }
-
-        return view('admin.events.index', compact('events', 'selectedEvent', 'galleries'));
+    
+        return view('admin.events.index', compact('events', 'selectedEvent', 'allGalleries'));
     }
+    
     
 
     /**
