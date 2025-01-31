@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mt-3 mb-5 ">
-        <div class="row">
+        <div class="row ">
             <div class="col-12">
                 <div class="row py-2 d-flex justify-content-center">
                     
@@ -63,7 +63,7 @@
 
     {{-- ELENCO EVENTI --}}
     <div class="container d-flex">
-        <div class="row width-index  py-2 me-1">
+        <div class="row width-index  py-2 me-3">
             <div class="col-12">
                 <div class="row justify-content-center my-2">
                     
@@ -80,7 +80,7 @@
 
 
                                 <div id="{{ $carouselId }}" class="carousel slide" >
-                                    <!-- Indicatori -->
+                                    <!-- indicatori -->
                                     <div class="carousel-indicators">
                                         <button type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                         @foreach ($galleriesForEvent as $index => $gallery)
@@ -88,14 +88,13 @@
                                         @endforeach
                                     </div>
 
-                                    <!-- Immagini del carosello -->
                                     <div class="carousel-inner">
-                                        <!-- Immagine principale -->
+                                        <!-- immagine principale -->
                                         <div class="carousel-item active">
                                             <img src="{{ asset('storage/' . $event->event_img) }}" class="d-block  card-img-event" alt="Event Image">
                                         </div>
 
-                                        <!-- Immagini della galleria -->
+                                        <!-- immagini della galleria -->
                                         @foreach ($galleriesForEvent as $gallery)
                                             <div class="carousel-item">
                                                 <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="Gallery Image" class="d-block card-img-event">
@@ -103,20 +102,20 @@
                                         @endforeach
                                     </div>
 
-                                    <!-- Controlli del carosello -->
+                                    <!-- bottoni carosello -->
                                     <button class="carousel-control-prev" type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="ms-2" aria-hidden="true"><i class="fa-solid fa-circle-chevron-left"></i></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next" type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="me-2" aria-hidden="true"><i class="fa-solid fa-circle-chevron-right"></i></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
 
-                                <!-- Corpo della card -->
+                               
                                 <div class="card-body">
-                                    <h5 class="card-title mt-3">{{ $event->event_title }}</h5>
+                                    <h5 class="card-title title-font  mt-3">{{ $event->event_title }}</h5>
                                     <span class="text-region text-font text-color truncate-multiline mt-2">
                                         {{ $event->event_region }}, {{ $event->event_city }}, {{ $event->event_address }}
                                     </span>
@@ -143,28 +142,70 @@
         
 
         {{-- DETTAGLI EVENTI --}}
-        <div class="row width-show py-2 ms-1 ">
-            <div class="col-12 ">
-                @if ($selectedEvent)
-                    <h1>Dettagli Evento</h1>
-                    <h3>{{ $selectedEvent->event_title }}</h3>
-                    <p>{{ $selectedEvent->event_description }}</p>
-                    <p>Data: {{ $selectedEvent->event_date }}</p>
-                    <p>Luogo: {{ $selectedEvent->event_address }}</p>
-                    
-                    
-                    
-                @else
-                    <h1>Seleziona un evento per vedere i dettagli</h1>
-                @endif
-            </div>
+        <div class="row width-show  ms-3 mb-4">
+            @if ($selectedEvent)
+                <div class="col-12 ">
+                    <div class="p-3 pt-2 position-relative">
+                        <h2 class="title-font title-color  text-start mb-1">{{ $selectedEvent->event_title }}</h2>
+                        
+                        <button class="position-absolute btn-star-show-event btn-font">
+                            <i class="fa-regular fa-star star-vuota"></i> Salva
+                            {{-- <i class="fa-solid fa-star "></i> --}}
+                        </button>
+                    </div>
+                    <div class="img-gallery pb-3 px-3  ">
+                        <!--immagine principale -->
+                        <div class="img-primary">
+                            <img id="mainImage" src="{{ asset('storage/' . $selectedEvent->event_img) }}" class="d-block" alt="Event Image">
+                        </div>
+            
+                        <!-- immagini galleria -->
+                        <div class="gallery-secondary ">
+                            <div class="img-secondary mb-2 ">
+                                <img src="{{ asset('storage/' . $selectedEvent->event_img) }}" alt="Event Image" class="d-block "
+                                    onclick="changeMainImage(this)">
+                            </div>
+            
+                            @foreach ($selectedGalleries as $gallery)
+                                <div class="img-secondary mb-2 ">
+                                    <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="Gallery Image" class="d-block "
+                                        onclick="changeMainImage(this)">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class=" px-3">
+                        <h5 class="subtitle-font text-color  fw-bold">{{ $selectedEvent->event_subtitle }}</h5>
+                        <div class="d-flex justify-content-between">
+                            <div >
+                                <p class="">{{ $selectedEvent->event_region }}, {{ $selectedEvent->event_city }}, {{ $selectedEvent->event_address }}</p>
+                            </div>
+                            <div class="me-3">    
+                                <p class="">{{ $selectedEvent->event_date }}</p>
+                            </div>
+                        </div>
+                        <p>{{ $selectedEvent->event_description }} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus quia ab et libero fugiat pariatur, laboriosam provident recusandae voluptatum autem, dolor explicabo itaque dignissimos laborum voluptatem ipsam mollitia, soluta nesciunt.</p>
+
+                    </div>
+                </div>
+            @else
+                <div class="col-12">
+
+                    <h1 class="text-center title-font title-color mt-5">Seleziona un evento per vedere i dettagli</h1>
+                </div>
+
+            @endif
 
             
         </div>
         
     </div>
 
-
+<script>
+    function changeMainImage(image) {
+        document.getElementById('mainImage').src = image.src;
+    }
+</script>
 </x-app-layout>
 {{--<div id="carouselExampleIndicators" class="carousel slide" >
                         <div class="carousel-indicators">

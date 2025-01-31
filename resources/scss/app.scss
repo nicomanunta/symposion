@@ -22,19 +22,19 @@ h1.title-font{
     font-family: "Lato", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 2.5rem;
+    
 }
 .text-font{
     font-family: "Poppins", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1rem;
+    
 }
 .button-font{
     font-family: "Montserrat", serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 1.125rem;
+    
 }
 
 // COLOR CLASS
@@ -42,9 +42,13 @@ h1.title-font{
     color: #f2cf4a; //giallo acceso
 }
 h1.title-color{
-    text-shadow: 3px 3px 0px #e24b40; //rosso brillante
+    text-shadow: 4px 4px 0px #e24b40; //rosso brillante
 }
 h2.title-color{
+    text-shadow: 3px 3px 0px #e24b40; //rosso brillante
+
+}
+h5.title-color{
     text-shadow: 2px 2px 0px #e24b40; //rosso brillante
 
 }
@@ -78,6 +82,7 @@ h2.title-color{
     background-color: #fff5d1; //giallo tenue // or #f4f4f4 (grigio chiaro)
     border-radius: 20px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s;
 }
 // .nav-bgcolor{
 //     background-color: rgba(0, 0, 0, 0.8);
@@ -110,9 +115,12 @@ h2.title-color{
 
 .border-filter{
     &:hover{
-        background-color: #d1b93f3c;    
+        // background-color: #d1b93f3c;    
         border-right: 0px;
         border-left: 0px;
+        box-shadow: 5px 5px 0px #e24b40; 
+        transition: box-shadow 0.3s;
+
     }
     
 }
@@ -154,13 +162,14 @@ h2.title-color{
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+     
 }
 
 .truncate-multiline{
     white-space: nowrap;      
     overflow: hidden;          
     text-overflow: ellipsis;  
-    display: block;           /* Assicura che funzioni correttamente */
+    display: block;          
     width: 100%; 
 }
 
@@ -170,7 +179,7 @@ h2.title-color{
     white-space: nowrap;      
     overflow: hidden;          
     text-overflow: ellipsis;  
-    display: block;           /* Assicura che funzioni correttamente */
+    display: block;           
     width: 100%;
     color: #4f4f4f;
     font-weight: 800;
@@ -204,6 +213,7 @@ h2.title-color{
 .carousel:hover .carousel-control-next {
     opacity: 1;
     pointer-events: auto;
+    
 }
 
 /* Rimuove il focus visivo sui pulsanti */
@@ -213,11 +223,98 @@ h2.title-color{
     transition: opacity 0.3s ease-in-out;
 }
 
-// .carousel-indicators{
-//     width: 10px;
-//     height: 10px;
-//     border-top: 0;
-//     border-bottom: 0;
-//     border-radius: 50px;
-//     border: 1px solid transparent;
-// }
+
+
+
+.carousel-indicators [data-bs-target]{
+    width: 8px;
+    height: 8px;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 50px;
+    border: 1px solid transparent;
+}
+
+.fa-circle-chevron-right, .fa-circle-chevron-left{
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.805);
+    transition: scale 0.3s, color 0.3s,  background-color 0.3s;
+    &:hover{
+        transition: scale 0.3s, color 0.3s, background-color 0.3s;
+        color: white;
+        scale: 1.08;
+        background-color: #4f4f4f;
+
+    }
+    box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.405);
+    border-radius: 50px;
+    background-color: #4f4f4f2b;
+}
+
+
+
+.img-gallery {
+    display: flex;
+    gap: 10px;
+    
+}
+
+.img-primary {
+    flex: 3;
+     
+}
+
+.img-primary img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    
+    
+}
+
+.gallery-secondary{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    aspect-ratio: 1 / 1;
+    overflow-y: auto; 
+    width: 100%;
+    align-items: center;
+   
+
+    
+}
+
+.img-secondary {
+   display: flex;
+   justify-content: center;
+   
+   
+}
+.img-secondary img {
+    width: 70%;
+    height: auto;
+    cursor: pointer;
+    transition:  box-shadow 0.3s;
+    border-radius: 15px ;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.img-secondary img:hover {
+    box-shadow: 5px 5px 0px #e24b40; 
+    
+}
+.btn-star-show-event{
+    top: 40%;
+    right: 5%;
+    
+    color: #e24b40;
+}
+.star-vuota{
+    font-size: 20px;
+    color: #e24b40;
+}
+
+
