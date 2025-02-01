@@ -147,11 +147,13 @@
                 <div class="col-12 ">
                     <div class="p-3 pt-2 position-relative">
                         <h2 class="title-font title-color  text-start mb-1">{{ $selectedEvent->event_title }}</h2>
-                        
-                        <button class="position-absolute btn-star-show-event btn-font">
-                            <i class="fa-regular fa-star star-vuota"></i> Salva
-                            {{-- <i class="fa-solid fa-star "></i> --}}
-                        </button>
+                        <form action="{{route('admin.favorites.store')}}">
+                            @csrf
+                            <button class="position-absolute btn-star-show-event btn-font">
+                                <i class="fa-regular fa-star star-vuota"></i> Salva
+                                {{-- <i class="fa-solid fa-star "></i> --}}
+                            </button>
+                        </form>
                     </div>
                     <div class="img-gallery pb-3 px-3  ">
                         <!--immagine principale -->
@@ -174,18 +176,39 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class=" px-3">
-                        <h5 class="subtitle-font text-color  fw-bold">{{ $selectedEvent->event_subtitle }}</h5>
-                        <div class="d-flex justify-content-between">
+                    <div class=" px-3 text-font text-color">
+                        <h5 class="subtitle-font text-color  fw-bold text-price fs-5">{{ $selectedEvent->event_subtitle }}</h5>
+                        <div class="d-flex justify-content-between text-font text-color">
                             <div >
                                 <p class="">{{ $selectedEvent->event_region }}, {{ $selectedEvent->event_city }}, {{ $selectedEvent->event_address }}</p>
                             </div>
                             <div class="me-3">    
-                                <p class="">{{ $selectedEvent->event_date }}</p>
+                                <p class="">{{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p>
                             </div>
                         </div>
-                        <p>{{ $selectedEvent->event_description }} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus quia ab et libero fugiat pariatur, laboriosam provident recusandae voluptatum autem, dolor explicabo itaque dignissimos laborum voluptatem ipsam mollitia, soluta nesciunt.</p>
+                        
+                        <p class="mb-2">{{ $selectedEvent->event_description }} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus quia ab et libero fugiat pariatur, laboriosam provident recusandae voluptatum autem, dolor explicabo itaque dignissimos laborum voluptatem ipsam mollitia, soluta nesciunt.</p>
 
+                        <div class="text-end me-3 fs-5 text-price mb-5">
+                            @if ($selectedEvent->event_price == 0)
+                                <b>Gratis</b>
+                            @else 
+                                <b>{{ $selectedEvent->event_price }} &euro;</b>
+                            @endif
+                        </div>
+
+                        <div class=" d-flex justify-content-between mt-3">
+                            <div>
+                                <span>Location: <b>{{$selectedEvent->eventLocation->location_name}}</b></span>
+                                <br>
+                                <span>Dress code: <b>{{$selectedEvent->eventDressCode->dress_code_name}}</b></span>
+                            </div>
+                            <div class="me-3 text-end">
+                                <span>Orario inizio: <b>{{ \Carbon\Carbon::parse($selectedEvent->event_start)->format('H:i') }}</b></span>
+                                <br>
+                                <span>Orario fine: <b>{{ \Carbon\Carbon::parse($selectedEvent->event_end)->format('H:i') }}</b></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @else

@@ -23,7 +23,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = Event::all();
+        $events = Event::with(['eventLocation', 'eventDressCode'])->get();
 
         // recupero tutte le immagini per tutti gli eventi (a sinistra)
         $allGalleries = Gallery::whereIn('event_id', $events->pluck('id'))->get();
@@ -33,7 +33,7 @@ class EventController extends Controller
         $selectedGalleries = collect(); 
 
         if ($request->has('event')) {
-            $selectedEvent = Event::find($request->input('event'));
+            $selectedEvent = Event::with(['eventLocation', 'eventDressCode'])->find($request->input('event'));
             if ($selectedEvent) {
                 $selectedGalleries = $selectedEvent->galleries;
             }

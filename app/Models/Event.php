@@ -15,12 +15,12 @@ class Event extends Model
 
     // relazione con tabella event_locations
     public function eventLocation(){
-        return $this->belongsTo(EventLocation::class);
+        return $this->belongsTo(EventLocation::class, 'location_id');
     }
 
     // relazione con tabella event_dress_codes
     public function eventDressCode(){
-        return $this->belongsTo(EventDressCode::class);
+        return $this->belongsTo(EventDressCode::class, 'dress_code_id');
     }
 
     // relazione con tabella galleries
