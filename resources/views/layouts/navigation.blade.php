@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="nav-bgcolor border-b  ">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+    <div class="container py-3">
+        <div class=" row d-flex justify-content-between align-items-center">
+            <div class=" col-4">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('admin.events.index') }}">
-                        <img style="width: 12%" src="{{URL::asset('/img/logo-giallo.png')}}" alt="">
+                <div class="shrink-0 flex text-center">
+                    <a class=" " href="{{ route('admin.events.index') }}">
+                        <img style="width: 50%" src="{{URL::asset('/img/logo-orizzontale-bianco.jpeg')}}" alt="">
                     </a>
                 </div>
 
@@ -14,24 +14,32 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class=" sm:flex sm:items-center sm:ms-6">
+            <div class="  col-4">
                 <!-- Navigation Links -->
-                <div class="">
-                    <a class="text-decoration-none me-2" href="{{ route('admin.events.index') }}">
-                        {{ __('Homepage') }}
+                <div class="text-center">
+                    <a class="text-decoration-none me-2 subtitle-font text-color link-nav-center {{ request()->routeIs('admin.events.index') ? 'active-link' : 'disabled-link' }} " href="{{ route('admin.events.index') }}">
+                        {{ __('Eventi') }}
                     </a>
-                    <a class="text-decoration-none me-2" href="{{ route('admin.favorites.index') }}">
+                    <a class="text-decoration-none me-2 subtitle-font text-color link-nav-center {{ request()->routeIs('admin.favorites.index') ? 'active-link' : 'disabled-link' }}" href="{{ route('admin.favorites.index') }}">
                         Preferiti
                     </a>
-                    <a class="text-decoration-none me-2" href="{{ route('profile.show') }}">
+                    
+                </div>
+
+                
+            </div>
+            <div class=" col-4">
+                <!-- Navigation Links -->
+                <div class="text-end">
+                    <a class="text-decoration-none me-2 subtitle-font text-color  link-nav-end " href="{{ route('profile.show') }}">
                         Profilo
                     </a>
-                    <a class="text-decoration-none me-2" href="{{ route('profile.edit') }}">
+                    {{-- <a class="text-decoration-none me-2 subtitle-font text-color  link-nav-end " href="{{ route('profile.edit') }}">
                         Modifica profilo
-                    </a>
-                    <form class="d-inline me-2" method="POST" action="{{ route('logout') }}">
+                    </a> --}}
+                    <form class="d-inline me-2 " method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }}"
+                        <a href="{{ route('logout') }}" class="subtitle-font text-color text-decoration-none link-nav-end "
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
                             {{ __('Log Out') }}

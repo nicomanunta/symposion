@@ -84,9 +84,9 @@ h5.title-color{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.3s;
 }
-.nav-bgcolor{
-    background-color: #fff5d1;
-}
+// .nav-bgcolor{
+//     background-color: #fff5d1;
+// }
 
 // RIMUOVERE FRECCETTE INPUT NUMBER
 .input-number[type=number]::-webkit-inner-spin-button,
@@ -357,4 +357,37 @@ h5.title-color{
     &:focus{
         border-radius: 10px !important;
     }
+}
+
+
+// navbar
+
+
+.link-nav-center{
+    font-size: 17px;
+}
+.link-nav-end{
+    font-size: 17px;
+    padding: 5px 8px;
+}
+.link-nav-end:hover{
+    font-size: 17px;
+    background-color: rgba(128, 128, 128, 0.076);
+    padding: 5px 8px;
+    border-radius: 10px;
+}
+
+.active-link{
+    font-weight: bold;
+    font-size: 19px;
+    pointer-events: none;
+    cursor: default;
+}
+.disabled-link:hover{
+    background-color: rgba(128, 128, 128, 0.076);
+    padding: 5px 8px;
+    border-radius: 10px;
+}
+.disabled-link{
+    padding: 5px 8px;
 }
