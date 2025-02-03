@@ -16,6 +16,31 @@ use App\Models\User;
 
 class FavoriteController extends Controller
 {
+
+    public function toggleFavorite(Request $request)
+    {
+        $user = auth()->user(); // Recupera l'utente autenticato
+        $eventId = $request->input('event_id'); // Prendi l'ID dell'evento
+
+        // Controlla se l'evento esiste
+        $event = Event::find($eventId);
+        if (!$event) {
+            return response()->json(['error' => 'Evento non trovato'], 404);
+        }
+
+        // Assicurati che la relazione favoriteEvents sia caricata
+        $user->loadMissing('favoriteEvents');
+
+        // Controlla se l'evento è già nei preferiti
+        if ($user->favoriteEvents->contains($event->id)) {
+            $user->favoriteEvents()->detach($event->id); // Rimuove dai preferiti
+            return response()->json(['status' => 'removed']);
+        } else {
+            $user->favoriteEvents()->attach($event->id); // Aggiunge ai preferiti
+            return response()->json(['status' => 'added']);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -147,13 +147,16 @@
                 <div class="col-12 ">
                     <div class="p-3 pt-2 position-relative">
                         <h2 class="title-font title-color  text-start mb-1">{{ $selectedEvent->event_title }}</h2>
-                        <form action="{{route('admin.favorites.store')}}">
+                        <form id="favoriteForm" action="{{ route('favorites.toggle') }}" method="POST">
                             @csrf
-                            <button class="position-absolute btn-star-show-event btn-font">
-                                <i class="fa-regular fa-star star-vuota"></i> Salva
-                                {{-- <i class="fa-solid fa-star "></i> --}}
+                            <input type="hidden" name="event_id" value="{{ $selectedEvent->id }}">
+                            <button type="button" id="favoriteButton" class="position-absolute btn-star-show-event button-font button-bgcolor">
+                                @if (auth()->user()->favoriteEvents->contains($selectedEvent->id))
+                                    <i class="fa-solid fa-star star-piena"></i> <span>Rimuovi</span>
+                                @else
+                                    <i class="fa-regular fa-star star-vuota"></i> <span>Salva</span>
+                                @endif
                             </button>
-                        </form>
                     </div>
                     <div class="img-gallery pb-3 px-3  ">
                         <!--immagine principale -->
@@ -228,6 +231,37 @@
     function changeMainImage(image) {
         document.getElementById('mainImage').src = image.src;
     }
+
+
+    document.getElementById('favoriteButton').addEventListener('click', function () {
+        let formData = new FormData(document.getElementById('favoriteForm'));
+
+        fetch("{{ route('favorites.toggle') }}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+        }).then(response => response.json())
+        .then(data => {
+            let button = document.getElementById('favoriteButton');
+            let icon = button.querySelector("i");
+            let text = button.querySelector("span");
+
+            if (data.status === 'added') {
+                icon.classList.remove("fa-regular", "star-vuota");
+                icon.classList.add("fa-solid", "star-piena");
+                text.innerText = "Rimuovi";
+            } else if (data.status === 'removed') {
+                icon.classList.remove("fa-solid", "star-piena");
+                icon.classList.add("fa-regular", "star-vuota");
+                text.innerText = "Salva";
+            }
+        })
+        .catch(error => console.error("Errore:", error));
+        
+    });
+
 </script>
 </x-app-layout>
 {{--<div id="carouselExampleIndicators" class="carousel slide" >

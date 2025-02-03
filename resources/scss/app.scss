@@ -62,7 +62,7 @@ h5.title-color{
 .button-bgcolor{
     background-color: #e24b40; //rosso brillante
     &:hover{
-        background-color: #c03833; //rosso scuro
+        background-color: #db3e38; //rosso scuro
     }
 }
 .general-bgcolor{
@@ -149,7 +149,7 @@ h5.title-color{
 .btn-search{
     background-color: #e24b40; //rosso brillante
     &:hover{
-        background-color: #c03833; //rosso scuro
+        background-color: #db3e38; //rosso scuro
     }
     color: white;
     border-radius: 20px;
@@ -251,25 +251,19 @@ h5.title-color{
     background-color: #4f4f4f2b;
 }
 
-
-
 .img-gallery {
     display: flex;
-    gap: 10px;
-    
+    gap: 10px;  
 }
 
 .img-primary {
-    flex: 4;
-     
+    flex: 4;    
 }
 
 .img-primary img {
     width: 100%;
     object-fit: cover;
-    border-radius: 15px;
-    
-    
+    border-radius: 15px;   
 }
 
 .gallery-secondary{
@@ -280,17 +274,12 @@ h5.title-color{
     aspect-ratio: 1 / 1;
     overflow-y: auto; 
     width: 100%;
-    align-items: center;
-   
-
-    
+    align-items: center;   
 }
 
 .img-secondary {
    display: flex;
-   justify-content: center;
-   
-   
+   justify-content: center;  
 }
 .img-secondary img {
     width: 85%;
@@ -303,66 +292,27 @@ h5.title-color{
 }
 
 .img-secondary img:hover {
-    box-shadow: 5px 5px 0px #e24b40; 
-    
+    box-shadow: 5px 5px 0px #e24b40;   
 }
 .btn-star-show-event{
-    top: 30%;
-    right: 5%;
-    
-    color: #e24b40;
-}
-.star-vuota{
-    font-size: 20px;
-    color: #e24b40;
+    top: 20%;
+    right: 4%;
+    color: #faf7f2;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
-.collapse{
-    visibility: visible;
+.star-vuota, .star-piena{
+    font-size: 18px;
+    color: #faf7f2;
 }
-.accordion-button{
-   
-    font-size: 20px;
-    border-radius: 10px !important;
-    
-    &:hover{
-        transition: box-shadow 0.3s;
-        box-shadow: 5px 5px 0px #e24b40; 
-    }
-}
-.accordion-button:focus{
-    
-    background-color: #fff5d1;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-}
-.accordion-header{
-    background-color: transparent !important;
-}
-.accordion-item{
-}
-.accordion-flush{
-    border-radius: 10px !important;
-    &:hover{
-        border-radius: 10px !important;
-    }
-    &:focus{
-        border-radius: 10px !important;
-    }
-}
-.accordion-flush > .accordion-item{
-    border-radius: 10px !important;
-    &:hover{
-        border-radius: 10px !important;
-    }
-    &:focus{
-        border-radius: 10px !important;
-    }
-}
+
+
+
 
 
 // navbar
-
-
 .link-nav-center{
     font-size: 17px;
 }

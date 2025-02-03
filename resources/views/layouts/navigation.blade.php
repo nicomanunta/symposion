@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex text-center">
                     <a class=" " href="{{ route('admin.events.index') }}">
-                        <img style="width: 50%" src="{{URL::asset('/img/logo-orizzontale-bianco.jpeg')}}" alt="">
+                        <img style="width: 60%" src="{{URL::asset('/img/logo-orizzontale-bianco.jpeg')}}" alt="">
                     </a>
                 </div>
 
