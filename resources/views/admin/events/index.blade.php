@@ -157,6 +157,7 @@
                                     <i class="fa-regular fa-star star-vuota"></i> <span>Salva</span>
                                 @endif
                             </button>
+                        </form>
                     </div>
                     <div class="img-gallery pb-3 px-3  ">
                         <!--immagine principale -->
@@ -186,7 +187,7 @@
                                 <p class="">{{ $selectedEvent->event_region }}, {{ $selectedEvent->event_city }}, {{ $selectedEvent->event_address }}</p>
                             </div>
                             <div class="me-3">    
-                                <p class="">{{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p>
+                                <p class="">{{ \Carbon\Carbon::parse($selectedEvent->event_date)->format('d-m-Y') }}</p>
                             </div>
                         </div>
                         
@@ -217,7 +218,7 @@
             @else
                 <div class="col-12">
 
-                    <h1 class="text-center title-font title-color mt-5">Seleziona un evento per vedere i dettagli</h1>
+                    <h1 class="text-center title-font title-color mt-5 mx-5">Seleziona un evento per vedere i dettagli</h1>
                 </div>
 
             @endif

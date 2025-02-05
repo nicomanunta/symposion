@@ -30,7 +30,7 @@ class Event extends Model
 
     // relazione many to many con tabella users
     public function favoritedByUsers(){
-        return $this->belongsToMany(User::class, 'favorites', 'event_id', 'user_id');
+        return $this->belongsToMany(User::class, 'favorites', 'event_id', 'user_id')->withTimestamps();;
     }
 
 }

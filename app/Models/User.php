@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     // relazione many to many con tabella events
     public function favoriteEvents(){
-        return $this->belongsToMany(Event::class, 'favorites', 'user_id', 'event_id');
+        return $this->belongsToMany(Event::class, 'favorites', 'user_id', 'event_id')->withTimestamps();
     }
 }

@@ -42,7 +42,7 @@
                         <a href="{{ route('logout') }}" class="subtitle-font text-color text-decoration-none link-nav-end "
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Esci') }}
                         </a>
 
                     </form>

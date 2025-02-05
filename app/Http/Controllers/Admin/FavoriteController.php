@@ -19,24 +19,26 @@ class FavoriteController extends Controller
 
     public function toggleFavorite(Request $request)
     {
-        $user = auth()->user(); // Recupera l'utente autenticato
-        $eventId = $request->input('event_id'); // Prendi l'ID dell'evento
+        $user = auth()->user(); // utente autenticato
+        $eventId = $request->input('event_id'); // ID dell'evento
 
-        // Controlla se l'evento esiste
+        
+        // controllo se l'evento esiste
         $event = Event::find($eventId);
         if (!$event) {
             return response()->json(['error' => 'Evento non trovato'], 404);
         }
-
-        // Assicurati che la relazione favoriteEvents sia caricata
+        
+        // relazione favoriteEvents caricata
         $user->loadMissing('favoriteEvents');
-
-        // Controlla se l'evento è già nei preferiti
+        
+        
+        // controllo se l'evento è già nei preferiti
         if ($user->favoriteEvents->contains($event->id)) {
-            $user->favoriteEvents()->detach($event->id); // Rimuove dai preferiti
+            $user->favoriteEvents()->detach($event->id);
             return response()->json(['status' => 'removed']);
         } else {
-            $user->favoriteEvents()->attach($event->id); // Aggiunge ai preferiti
+            $user->favoriteEvents()->attach($event->id, ['created_at' => now(), 'updated_at' => now()]); 
             return response()->json(['status' => 'added']);
         }
     }
@@ -47,15 +49,25 @@ class FavoriteController extends Controller
     public function index(Request $request)
     {
         $user = auth()->user(); 
-        $favorites = $user->favoriteEvents; 
+        $favorites = $user->favoriteEvents()->orderBy('favorites.created_at', 'desc')->get();
+
+        $eventId = $user->favoriteEvents;
+        $allFavoriteGalleries = Gallery::whereIn('event_id', $eventId->pluck('id'))->get();
 
         $selectedEvent = null;
+        $selectedGalleries = collect();
 
+        // Se è stato selezionato un evento, lo recuperiamo
         if ($request->has('event')) {
-            $selectedEvent = Event::find($request->input('event'));
+            $selectedEvent = Event::with(['eventLocation', 'eventDressCode', 'galleries'])
+                ->find($request->input('event'));
+
+            if ($selectedEvent) {
+                $selectedGalleries = $selectedEvent->galleries;
+            }
         }
 
-        return view('admin.favorites.index', compact('user', 'favorites', 'selectedEvent'));
+        return view('admin.favorites.index', compact('user', 'favorites', 'selectedEvent', 'selectedGalleries', 'allFavoriteGalleries'));
     }
 
     /**

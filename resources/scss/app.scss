@@ -48,6 +48,10 @@ h2.title-color{
     text-shadow: 3px 3px 0px #e24b40; //rosso brillante
 
 }
+h3.title-color{
+    text-shadow: 2px 2px 0px #e24b40; //rosso brillante
+
+}
 h5.title-color{
     text-shadow: 2px 2px 0px #e24b40; //rosso brillante
 
@@ -340,4 +344,13 @@ h5.title-color{
 }
 .disabled-link{
     padding: 5px 8px;
+}
+
+
+.star-favorite{
+    z-index: 10;
+    top: 3%;
+    right: 3%;
+    color: #f2cf4a;
+    text-shadow: 2px 2px 0px #e24b40;
 }
