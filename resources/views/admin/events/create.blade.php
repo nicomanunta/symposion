@@ -11,7 +11,7 @@
                         {{-- event_title --}}
                         <div class="col-6">
                             <label class="mb-1 label-form" for="event_title">Titolo</label>
-                            <input class="form-control" type="text" name="event_title" id="event_title" placeholder="Titolo" value="{{old('event_title')}}" required>
+                            <input class="form-control shadow-input" type="text" name="event_title" id="event_title" placeholder="Titolo" value="{{old('event_title')}}" required>
                             @error('event_title')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -19,7 +19,7 @@
                         {{-- event_subtitle --}}
                         <div class="col-6">
                             <label class="mb-1 label-form" for="event_subtitle">Sottotitolo</label>
-                            <input class="form-control" type="text" name="event_subtitle" id="event_subtitle" placeholder="Sottotitolo" value="{{old('event_subtitle')}}" >
+                            <input class="form-control shadow-input" type="text" name="event_subtitle" id="event_subtitle" placeholder="Sottotitolo" value="{{old('event_subtitle')}}" >
                             @error('event_subtitle')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -30,7 +30,7 @@
                         {{-- location_id --}}
                         <div class="col-4">
                             <label class="mb-1 label-form" for="location_id">Location</label>
-                            <select class="form-control" name="location_id" id="location_id">
+                            <select class="form-control shadow-input" name="location_id" id="location_id">
                                 <option value="">Seleziona il tipo di location</option>
                                 @foreach ($locations as $location)
                                     <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
@@ -45,7 +45,7 @@
                         {{-- dress_code_id --}}
                         <div class="col-4">
                             <label class="mb-1 label-form" for="dress_code_id">Dress code</label>
-                            <select class="form-control" name="dress_code_id" id="dress_code_id">
+                            <select class="form-control shadow-input" name="dress_code_id" id="dress_code_id">
                                 <option value="">Seleziona il dress code</option>
                                 @foreach ($dressCodes as $dressCode)
                                     <option value="{{ $dressCode->id }}" {{ old('dress_code_id') == $dressCode->id ? 'selected' : '' }}>
@@ -60,9 +60,9 @@
                         {{-- event_price --}}
                         <div class="col-4 ">
                             <label class="mb-1 label-form" for="event_price">Prezzo </label>
-                            <div class="input-group">
-                                <input class="form-control input-number" type="number" name="event_price" id="event_price" placeholder="Prezzo per accedere" value="{{old('event_price')}}" step="0.01" min="0">
-                                <span class="input-group-text">&euro;</span>
+                            <div class="input-group group-price">
+                                <input class="form-control shadow-input-price input-number" type="number" name="event_price" id="event_price" placeholder="Prezzo per accedere" value="{{old('event_price')}}" step="0.01" min="0">
+                                <span class="input-group-text shadow-euro-price">&euro;</span>
                             </div>
                             @error('event_price')
                                 <div class="text-danger">{{$message}}</div>
@@ -74,7 +74,7 @@
                         {{-- event_img --}}
                         <div class="col-6">
                             <label class="mb-1 label-form" for="event_img">Immagine in primo piano</label>
-                            <input class="form-control" type="file" name="event_img" id="event_img"   accept="image/*" >
+                            <input class="form-control shadow-input" type="file" name="event_img" id="event_img"   accept="image/*" >
                             @error('event_img')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -82,7 +82,7 @@
                         {{-- galleries --}}
                         <div class="col-6">
                             <label class="mb-1 label-form" for="galleries">Immagini secondarie</label>
-                            <input class="form-control" type="file" name="galleries[]" id="galleries"  accept="image/*" multiple>
+                            <input class="form-control shadow-input" type="file" name="galleries[]" id="galleries"  accept="image/*" multiple>
                             @error('galleries.*')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -92,7 +92,7 @@
                     {{-- event_description --}}
                     <div class="form-group my-3">
                         <label class="mb-1 label-form" for="event_description">Descrizione</label>
-                        <textarea class="form-control" name="event_description" id="event_description" placeholder="Spiega di cosa si tratta, dai dei dettagli sull'evento...">{{ old('event_description') }}</textarea>
+                        <textarea class="form-control shadow-input" name="event_description" id="event_description" placeholder="Spiega di cosa si tratta, dai dei dettagli sull'evento...">{{ old('event_description') }}</textarea>
                         @error('event_description')
                             <div class="text-danger">{{$message}}</div>
                         @enderror
@@ -103,7 +103,7 @@
                         {{-- event_region --}}
                         <div class="col-4">
                             <label class="mb-1 label-form" for="event_region">Regione</label>
-                            <select class="form-control" name="event_region" id="event_region" required>
+                            <select class="form-control shadow-input" name="event_region" id="event_region" required>
                                 <option value="">Seleziona una Regione </option>
                                 <option value="Abruzzo" {{old('region') == 'Abruzzo' ? 'selected' : ''}}>Abruzzo</option>
                                 <option value="Basilicata" {{old('region') == 'Basilicata' ? 'selected' : ''}}>Basilicata</option>
@@ -133,7 +133,7 @@
                         {{-- event_city --}}
                         <div class="col-4">
                             <label class="mb-1 label-form" for="event_city">Comune</label>
-                            <input class="form-control" type="text" name="event_city" id="event_city" placeholder="Comune" value="{{old('event_city')}}" required>
+                            <input class="form-control shadow-input" type="text" name="event_city" id="event_city" placeholder="Comune" value="{{old('event_city')}}" required>
                             @error('event_city')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -141,7 +141,7 @@
                         {{-- event_address --}}
                         <div class="col-4">
                             <label class="mb-1 label-form" for="event_address">Indirizzo</label>
-                            <input class="form-control" type="text" name="event_address" id="event_address" placeholder="es. Via Rossi 10" value="{{old('event_address')}}" required>
+                            <input class="form-control shadow-input" type="text" name="event_address" id="event_address" placeholder="es. Via Rossi 10" value="{{old('event_address')}}" required>
                             @error('event_address')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -153,7 +153,7 @@
                         <div class="col-8">
                             
                             <label class="mb-1 label-form" for="event_date">Data</label>
-                            <input class="form-control" type="date" name="event_date" id="event_date" placeholder="Data" value="{{old('event_date')}}" required>
+                            <input class="form-control shadow-input" type="date" name="event_date" id="event_date" placeholder="Data" value="{{old('event_date')}}" required>
                             @error('event_date')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -161,7 +161,7 @@
                         {{-- event_start --}}
                         <div class="col-2">
                             <label class="mb-1 label-form" for="event_start">Orario inizio </label>
-                            <input class="form-control" type="time" name="event_start" id="event_start" placeholder="Inizio" value="{{old('event_start')}}" required>
+                            <input class="form-control shadow-input" type="time" name="event_start" id="event_start" placeholder="Inizio" value="{{old('event_start')}}" required>
                             @error('event_start')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -170,7 +170,7 @@
                         {{-- event_end --}}
                         <div class="col-2">
                             <label class="mb-1 label-form" for="event_end">Orario fine</label>
-                            <input class="form-control" type="time" name="event_end" id="event_end" placeholder="Fine" value="{{old('event_end')}}" required>
+                            <input class="form-control shadow-input" type="time" name="event_end" id="event_end" placeholder="Fine" value="{{old('event_end')}}" required>
                             @error('event_end')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -187,5 +187,20 @@
         </div>
     </div>
 
+    <script>
+        // Seleziona l'input e il contenitore
+        const input = document.querySelector('.shadow-input-price');
+        const container = document.querySelector('.group-price');
+    
+        // Quando l'input riceve il focus, aggiungi la classe 'focused' al contenitore
+        input.addEventListener('focus', function() {
+            container.classList.add('focused');
+        });
+    
+        // Quando l'input perde il focus, rimuovi la classe 'focused' dal contenitore
+        input.addEventListener('blur', function() {
+            container.classList.remove('focused');
+        });
+    </script>
     
 </x-style-layout>

@@ -346,11 +346,51 @@ h5.title-color{
     padding: 5px 8px;
 }
 
-
+// favorite page
 .star-favorite{
     z-index: 10;
     top: 3%;
     right: 3%;
     color: #f2cf4a;
     text-shadow: 2px 2px 0px #e24b40;
+}
+
+// CREATE EVENTS
+.shadow-input:focus{
+    border: 0px !important;
+    box-shadow: 5px 5px 0px #e24b40;   
+    transition: box-shadow 0.3s;
+}
+.shadow-input{
+    border: 0px !important;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s;
+ 
+}
+.shadow-input-price{
+    border: 0px !important;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+
+}
+.shadow-input-price:focus{
+    border: 0px !important;
+    box-shadow:none !important;
+    transition: box-shadow 0.3s;
+}
+.shadow-input-price:focus + .shadow-euro-price{
+    border: 0px !important;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s;
+}
+.shadow-euro-price{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    border: 0px;
+
+}
+.focused {
+    /* Modifica il box-shadow quando l'input è in focus */
+    box-shadow: 5px 5px 0px #e24b40;
+    transition: box-shadow 0.3s;
+    border-radius: 5px;
+
 }

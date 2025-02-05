@@ -31,7 +31,10 @@
             <div class=" col-4">
                 <!-- Navigation Links -->
                 <div class="text-end">
-                    <a class="text-decoration-none me-2 subtitle-font text-color  link-nav-end " href="{{ route('profile.show') }}">
+                    <a class="text-decoration-none me-2 subtitle-font text-color  link-nav-end {{ request()->routeIs('admin.events.create') ? 'active-link' : '' }}" href="{{ route('admin.events.create') }}">
+                        Crea evento
+                    </a>
+                    <a class="text-decoration-none mx-2 subtitle-font text-color  link-nav-end {{ request()->routeIs('profile.show') ? 'active-link' : '' }} " href="{{ route('profile.show') }}">
                         Profilo
                     </a>
                     {{-- <a class="text-decoration-none me-2 subtitle-font text-color  link-nav-end " href="{{ route('profile.edit') }}">
