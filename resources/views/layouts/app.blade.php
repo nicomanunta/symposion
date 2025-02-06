@@ -21,7 +21,7 @@
     </head>
     <body class="font-sans antialiased vh-100 general-bgcolor">
         <div class="col ">
-            <header class=" bg-steel-blue ">
+            <header class=" ">
                 @include('layouts.navigation')
             </header>
         </div>
@@ -36,5 +36,22 @@
 
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // ripristina la posizione dello scroll se salvata
+                if (sessionStorage.getItem("scrollPosition") !== null) {
+                    window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
+                    sessionStorage.removeItem("scrollPosition"); // rimuovo per evitare problemi nei futuri reload
+                }
+        
+                // salva la posizione dello scroll quando si clicca su un link
+                document.querySelectorAll("a").forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        sessionStorage.setItem("scrollPosition", window.scrollY);
+                    });
+                });
+            });
+        </script>
+        
     </body>
 </html>
