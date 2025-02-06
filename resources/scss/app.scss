@@ -8,6 +8,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.height-min{
+    min-height: 100vh;
+}
 
 // FONT CLASS
 .title-font{
@@ -419,22 +422,8 @@ h5.title-color{
 
 
 
-.sticky-row {
-   
-    position: sticky;
-    top: 0px;
-    z-index: 100;
-    background: white; /* Assicurati che sia visibile */
-    
-}
 
-.container, .row, .sticky-parent {
-    overflow: visible !important;
-}
 
-.sticky-parent {
-    height: auto !important;
-}
-.sticky-parent {
-    position: initial !important;
-}
+
+
+

@@ -101,7 +101,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-
+                                    
                                     <!-- bottoni carosello -->
                                     <button class="carousel-control-prev" type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide="prev">
                                         <span class="ms-2" aria-hidden="true"><i class="fa-solid fa-circle-chevron-left"></i></span>
@@ -138,13 +138,14 @@
                 </div>
                     
             </div>
+       
         </div>
-        
 
         {{-- DETTAGLI EVENTI --}}
-        <div class="row width-show  ms-3 mb-4 sticky-row">
+        <div class="row width-show  ms-3 mb-4 ">
+                                    
             @if ($selectedEvent)
-                <div class="col-12 ">
+                <div class="col-12  ">
                     <div class="p-3 pt-2 position-relative">
                         <h2 class="title-font title-color  text-start mb-1">{{ $selectedEvent->event_title }}</h2>
                         <form id="favoriteForm" action="{{ route('favorites.toggle') }}" method="POST">
@@ -222,6 +223,7 @@
                 </div>
 
             @endif
+       
 
             
         </div>
@@ -262,18 +264,6 @@
         .catch(error => console.error("Errore:", error));
         
     });
-    // document.addEventListener("DOMContentLoaded", function () {
-    //     const stickyRow = document.querySelector(".width-show");
-    //     const offset = stickyRow.offsetTop;
-
-    //     window.addEventListener("scroll", function () {
-    //         if (window.scrollY >= offset) {
-    //             stickyRow.classList.add("sticky-active");
-    //         } else {
-    //             stickyRow.classList.remove("sticky-active");
-    //         }
-    //     });
-    // });
 
 </script>
 </x-app-layout>

@@ -19,16 +19,16 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css','resources/scss/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased vh-100 general-bgcolor">
+    <body class="font-sans antialiased height-min 0 general-bgcolor">
         <div class="col ">
             <header class=" ">
                 @include('layouts.navigation')
             </header>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <main>
+        <div class="container ">
+            <div class="row ">
+                <div class="col-12 ">
+                    <main class="">
                         {{ $slot }}
                     </main>
                 </div> 
