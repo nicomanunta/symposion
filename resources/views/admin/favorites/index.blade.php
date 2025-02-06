@@ -9,7 +9,7 @@
                 
                     <div class="row">
                         @foreach ($favorites as $favorite)
-                            <div class="card-event col-6 px-3">
+                            <div class="card-event col-6 px-3 mb-4">
                                 <a href="{{route('admin.favorites.index', ['event' => $favorite->id])}}" class="text-decoration-none">
                                     @php 
                                         $favoriteCarouselId = "carousel-" . $favorite->id; 
@@ -53,7 +53,7 @@
 
 
                                     <div class="card-body">
-                                        <h5 class="card-title title-font  mt-3">{{ $favorite->event_title }}</h5>
+                                        <h5 class="card-title title-font   mt-3">{{ $favorite->event_title }}</h5>
                                         <span class="text-region text-font text-color truncate-multiline mt-2">
                                             {{ $favorite->event_region }}, {{ $favorite->event_city }}, {{ $favorite->event_address }}
                                         </span>

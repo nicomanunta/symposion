@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mt-3 mb-5 ">
+    <div class="container mt-3 mb-5  ">
         <div class="row ">
             <div class="col-12">
                 <div class="row py-2 d-flex justify-content-center">
@@ -62,14 +62,14 @@
     </div>
 
     {{-- ELENCO EVENTI --}}
-    <div class="container d-flex">
+    <div class="container d-flex  sticky-parent">
         <div class="row width-index  py-2 me-3">
             <div class="col-12">
-                <div class="row justify-content-center my-2">
+                <div class="row my-2">
                     
 
                     @foreach ($events as $event)
-                        <div class="card-event col-6 px-3">
+                        <div class="card-event col-6 px-3 mb-4">
                             <a href="{{ route('admin.events.index', ['event' => $event->id]) }}" class="text-decoration-none">
                                 
                                 @php 
@@ -142,7 +142,7 @@
         
 
         {{-- DETTAGLI EVENTI --}}
-        <div class="row width-show  ms-3 mb-4">
+        <div class="row width-show  ms-3 mb-4 sticky-row">
             @if ($selectedEvent)
                 <div class="col-12 ">
                     <div class="p-3 pt-2 position-relative">
@@ -262,6 +262,18 @@
         .catch(error => console.error("Errore:", error));
         
     });
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const stickyRow = document.querySelector(".width-show");
+    //     const offset = stickyRow.offsetTop;
+
+    //     window.addEventListener("scroll", function () {
+    //         if (window.scrollY >= offset) {
+    //             stickyRow.classList.add("sticky-active");
+    //         } else {
+    //             stickyRow.classList.remove("sticky-active");
+    //         }
+    //     });
+    // });
 
 </script>
 </x-app-layout>

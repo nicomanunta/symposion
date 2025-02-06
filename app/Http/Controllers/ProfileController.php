@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Event;
+use App\Http\Controllers\Admin\EventController;
+use App\Models\Gallery;
+
+
+
 
 class ProfileController extends Controller
 {
@@ -17,7 +23,14 @@ class ProfileController extends Controller
     public function show()
     {
         $user = auth()->user(); // Ottieni l'utente autenticato
-        return view('profile.show', compact('user'));
+        $events = Event::with(['eventLocation', 'eventDressCode'])->get();
+        $allGalleriesProfile = Gallery::whereIn('event_id', $events->pluck('id'))->get();
+
+
+        $createdEventsCount = $user->events()->count();
+        $savedEventsCount = $user->favoriteEvents()->count();
+
+        return view('profile.show', compact('user', 'createdEventsCount', 'savedEventsCount', 'events', 'allGalleriesProfile'));
     }
 
     
