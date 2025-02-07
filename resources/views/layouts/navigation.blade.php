@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="nav-bgcolor border-b  ">
+<nav x-data="{ open: false }" class="nav-bgcolor shadow-bottom ">
     <!-- Primary Navigation Menu -->
-    <div class="container py-3">
+    <div class="container pt-2 pb-1 navbar-first">
         <div class=" row d-flex justify-content-between align-items-center">
             <div class=" col-4">
                 <!-- Logo -->

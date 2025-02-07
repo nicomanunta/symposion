@@ -10,7 +10,7 @@
                     <div class="row">
                         @foreach ($favorites as $favorite)
                             <div class="card-event col-6 px-3 mb-4">
-                                <a href="{{route('admin.favorites.index', ['event' => $favorite->id])}}" class="text-decoration-none">
+                                <a href="{{route('admin.favorites.index', ['event' => $favorite->id])}}" class="text-decoration-none event-link">
                                     @php 
                                         $favoriteCarouselId = "carousel-" . $favorite->id; 
                                         $galleriesForFavorite = $allFavoriteGalleries->where('event_id', $favorite->id)->values(); 
@@ -201,6 +201,12 @@
         })
         .catch(error => console.error("Errore:", error));
         
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        // se esiste un evento selezionato, abilita lo scroll nei dettagli
+        if (document.querySelector('.width-show .col-12')) {
+            document.querySelector('.width-show').classList.add('active');
+        }
     });
     </script>
 </x-app-layout>

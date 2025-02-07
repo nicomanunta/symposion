@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mt-3 mb-5  ">
+    <div class="container mt-3 mb-4  filters-row ">
         <div class="row ">
             <div class="col-12">
                 <div class="row py-2 d-flex justify-content-center">
@@ -61,16 +61,16 @@
         </div>
     </div>
 
-    {{-- ELENCO EVENTI --}}
-    <div class="container d-flex  sticky-parent">
-        <div class="row width-index  py-2 me-3">
+    <div class="container d-flex ">
+        {{-- ELENCO EVENTI --}}
+        <div class="row width-index  pt-1 me-3 ">
             <div class="col-12">
                 <div class="row my-2">
                     
 
                     @foreach ($events as $event)
                         <div class="card-event col-6 px-3 mb-4">
-                            <a href="{{ route('admin.events.index', ['event' => $event->id]) }}" class="text-decoration-none">
+                            <a href="{{ route('admin.events.index', ['event' => $event->id]) }}" class="text-decoration-none event-link">
                                 
                                 @php 
                                     $carouselId = "carousel-" . $event->id; 
@@ -264,6 +264,14 @@
         .catch(error => console.error("Errore:", error));
         
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        // se esiste un evento selezionato, abilita lo scroll nei dettagli
+        if (document.querySelector('.width-show .col-12')) {
+            document.querySelector('.width-show').classList.add('active');
+        }
+    });
+
+   
 
 </script>
 </x-app-layout>

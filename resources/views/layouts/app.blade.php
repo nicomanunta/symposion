@@ -19,7 +19,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css','resources/scss/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased height-min 0 general-bgcolor">
+    <body class="font-sans antialiased height-min 0 general-bgcolor overflow-hidden">
         <div class="col ">
             <header class=" ">
                 @include('layouts.navigation')
@@ -37,20 +37,76 @@
             </div>
         </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // ripristina la posizione dello scroll se salvata
-                if (sessionStorage.getItem("scrollPosition") !== null) {
-                    window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
-                    sessionStorage.removeItem("scrollPosition"); // rimuovo per evitare problemi nei futuri reload
+            function adjustHeight() {
+            let navbar = document.querySelector('.navbar');
+                let filtersRow = document.querySelector('.filters-row');
+                let widthIndex = document.querySelector('.width-index');
+                let widthShow = document.querySelector('.width-show');
+
+                if (widthIndex && widthShow) {
+                    let navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    let filtersHeight = filtersRow ? filtersRow.offsetHeight : 0;
+
+                    // Calcolo dell'altezza disponibile
+                    let availableHeight = window.innerHeight - navbarHeight - (filtersRow ? filtersHeight : 0) - 60;
+                    
+                    // Imposta l'altezza delle sezioni
+                    widthIndex.style.height = availableHeight + "px";
+                    widthShow.style.height = availableHeight + "px";
                 }
-        
-                // salva la posizione dello scroll quando si clicca su un link
-                document.querySelectorAll("a").forEach(function (link) {
+
+                // Ripristino della posizione dello scroll
+                setTimeout(() => {
+                    restoreScrollPosition();  // Ripristina lo scroll di widthIndex
+                }, 50);
+            }
+
+            function restoreScrollPosition() {
+                const widthIndex = document.querySelector('.width-index');
+                if (widthIndex && sessionStorage.getItem("widthIndex-scrollPosition") !== null) {
+                    // Ripristina lo scroll della sezione widthIndex
+                    widthIndex.scrollTop = sessionStorage.getItem("widthIndex-scrollPosition");
+                    sessionStorage.removeItem("widthIndex-scrollPosition");
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                adjustHeight(); // Adattamento dell'altezza
+
+                // Salva posizione scroll solo quando si clicca su un link di evento
+                document.querySelectorAll("a.event-link").forEach(function (link) {
                     link.addEventListener("click", function () {
-                        sessionStorage.setItem("scrollPosition", window.scrollY);
+                        // Salva solo lo scroll della sezione widthIndex
+                        const widthIndex = document.querySelector(".width-index");
+                        if (widthIndex) {
+                            console.log("Salvata posizione scroll: ", widthIndex.scrollTop);
+                            sessionStorage.setItem("widthIndex-scrollPosition", widthIndex.scrollTop);
+                        }
                     });
                 });
             });
+
+            window.addEventListener("resize", adjustHeight);
+
+
+
+
+
+
+
+             // chiamata quando viene selezionato un evento
+            function selectEvent(eventId) {
+                document.querySelector('.width-show').classList.add('active');
+                
+            }
+
+
+          
+            
+
+            
+
+            
         </script>
         
     </body>
