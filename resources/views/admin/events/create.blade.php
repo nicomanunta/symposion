@@ -1,8 +1,8 @@
 <x-style-layout>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-9 mt-2 mb-3 px-4 py-1 section-bgcolor">
-                <h1 class="mb-4 mt-2 text-center title-font title-color text-uppercase">Crea il tuo evento</h1>
+            <div class="col-9 mt-3 mb-3 px-4  section-bgcolor">
+                <h1 class="mb-3 mt-2 text-center title-font title-color text-uppercase">Crea il tuo evento</h1>
                 {{-- FORM CREAZIONE EVENTO --}}
                 <form action="{{route('admin.events.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -178,7 +178,7 @@
                     </div>
 
                     <div class="text-end my-4 mx-3">
-                        <button type="submit" class="btn btn-primary">Crea</button>
+                        <button type="submit" class="btn-save button-font button-bgcolor">Crea</button>
                     </div>
                     
                     

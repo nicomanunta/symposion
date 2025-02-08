@@ -51,7 +51,7 @@
                         </select>
                     </div>
                     <div class="col-1  ms-1 text-center d-flex justify-content-center align-items-center">
-                        <button type="submit" class="btn-search text-color fw-bold w-100 h-100">
+                        <button type="submit" class="btn-search button-bgcolor text-color fw-bold w-100 h-100">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>

@@ -68,8 +68,11 @@ h5.title-color{
 } 
 .button-bgcolor{
     background-color: #e24b40; //rosso brillante
+    color: white;
     &:hover{
-        background-color: #db3e38; //rosso scuro
+        background-color: #f2cf4a;
+        color: #4f4f4f;
+        transition: box-shadow 0.3s, color 0.3s, background-color 0.3s;
     }
 }
 .general-bgcolor{
@@ -169,12 +172,12 @@ h5.title-color{
 }
 .btn-search{
     background-color: #e24b40; //rosso brillante
-    &:hover{
-        background-color: #db3e38; //rosso scuro
-    }
     color: white;
     border-radius: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    &:hover{
+        box-shadow: 4px 4px 0px #e24b40;
+    }
 }
 
 
@@ -322,11 +325,14 @@ h5.title-color{
     padding: 6px 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    font-size: 18px;
+    &:hover{
+        box-shadow: 4px 4px 0px #e24b40;
+    }
 }
 
 .star-vuota, .star-piena{
     font-size: 18px;
-    color: #faf7f2;
 }
 
 
@@ -426,7 +432,11 @@ h5.title-color{
 .btn-edit-profile{
     padding: 5px 10px;
     color: white;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    &:hover{
+        box-shadow: 4px 4px 0px #e24b40;
+    }
 }
 
 .link-edit-profile{
@@ -437,7 +447,7 @@ h5.title-color{
 
 
 
-/* Colonna sinistra: Lista eventi */
+/* lista eventi */
 .events-list-container {
     overflow-y: auto; /* Abilita lo scroll */
     height: 100vh; /* Occupa l'intera altezza della viewport */
@@ -445,17 +455,119 @@ h5.title-color{
    
 }
 
-/* Colonna destra: Dettagli evento */
+/* dettagli evento */
 .details-container {
     height: 100vh;
-    overflow: hidden; /* Disabilita lo scroll finché non viene selezionato un evento */
+    overflow: hidden; 
     padding: 20px;
 }
 .details-container.active {
-    overflow-y: auto; /* Abilita lo scroll dopo la selezione */
+    overflow-y: auto; 
 }
 
 .shadow-bottom{
     box-shadow: 0px 2px 5px rgba(128, 128, 128, 0.088);
 }
 
+.btn-save{
+    color: white;
+    border-radius: 8px;
+    padding: 5px 15px;
+    font-size: 20px;
+    &:hover{
+        background-color: #f2cf4a;
+        
+        box-shadow: 3px 3px 0px #e24b40;
+        color: #4f4f4f;
+    }
+}
+
+
+// show events in profile
+.img-gallery-show {
+    display: flex;
+    gap: 10px;  
+}
+
+.img-primary-show {
+    flex: 2;    
+}
+
+.img-primary-show img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;   
+}
+
+.gallery-secondary-show{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    aspect-ratio: 1 / 1;
+    overflow-y: auto; 
+    width: 100%;
+    align-items: center;   
+}
+
+.img-secondary-show {
+   display: flex;
+   justify-content: space-around;  
+}
+.img-secondary-show img {
+    width: 70%;
+    height: auto;
+    cursor: pointer;
+    transition:  box-shadow 0.3s;
+    border-radius: 15px ;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.img-secondary-show img:hover {
+    box-shadow: 5px 5px 0px #e24b40;   
+}
+.btn-star-show-event-profile{
+    
+    color: #faf7f2;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    font-size: 18px;
+    &:hover{
+        box-shadow: 4px 4px 0px #e24b40;
+    }
+}
+.position-button{
+    top: 30%;
+    right: 6%;
+}
+
+.title-show{
+    font-size: 40px;
+}
+
+.btn-star-show-event-profile:hover .color-button-show{
+    color: #4f4f4f;
+    
+}
+.color-button-show{
+    color: white;
+}
+
+.fs-details{
+    font-size: 19px;
+}
+
+
+
+.video-logo{
+    width: 70%;
+    aspect-ratio: 1 / 1;
+
+    background: url("/public/img/symposion.gif") no-repeat center center ;
+    background-size: cover;
+    transform: perspective(1000px) rotateY(-25deg); /* Aggiunge prospettiva e rotazione iniziale */
+    
+    border-radius: 20px;
+}

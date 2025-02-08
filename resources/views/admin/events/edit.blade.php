@@ -1,8 +1,8 @@
 <x-style-layout>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-9 my-5 px-4 py-2 section-bgcolor">
-                <h1 class="mb-4 mt-2 text-center title-font title-color text-uppercase">Modifica il tuo evento</h1>
+            <div class="col-9 mt-3 mb-3 px-4  section-bgcolor">
+                <h1 class="mb-3 mt-2 text-center title-font title-color text-uppercase">Modifica il tuo evento</h1>
                 {{-- FORM MODIFICA EVENTO --}}
                 <form action="{{route('admin.events.update', ['event' => $event->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -19,7 +19,7 @@
                         </div>
                         {{-- event_subtitle --}}
                         <div class="col-6">
-                            <label for="event_subtitle" class="mb-1 label-form">Titolo</label>
+                            <label for="event_subtitle" class="mb-1 label-form">Sottotitolo</label>
                             <input class="form-control shadow-input" type="text" name="event_subtitle" id="event_subtitle" placeholder="Titolo" value="{{old('event_subtitle', $event->event_subtitle)}}" required>
                             @error('event_subtitle')
                                 <div class="text-danger">{{$message}}</div>
@@ -63,7 +63,7 @@
                         {{-- event_price --}}
                         <div class="col-4">
                             <label for="event_price" class="mb-1 label-form">Prezzo</label>
-                            <div class="input-group">
+                            <div class="input-group group-price">
                                 <input type="number" class="form-control shadow-input-price input-number" name="event_price" id="event_price" placeholder="Prezzo per accedere" value="{{old('event_price', $event->event_price)}}" step="0.01" min="0">
                                 <span class="input-group-text shadow-euro-price">&euro;</span>
                             </div>
@@ -165,7 +165,7 @@
                         {{-- event_start --}}
                         <div class="col-2">
                             <label class="mb-1 label-form" for="event_start">Orario inizio </label>
-                            <input class="form-control shadow-input" type="time" name="event_start" id="event_start" placeholder="Inizio" value="{{old('event_start', $event->event_start)}}" required>
+                            <input class="form-control shadow-input" type="time" name="event_start" id="event_start" placeholder="Inizio" value="{{old('event_start', \Carbon\Carbon::parse($event->event_start)->format('H:i'))}}" required>
                             @error('event_start')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -174,7 +174,7 @@
                         {{-- event_end --}}
                         <div class="col-2">
                             <label class="mb-1 label-form" for="event_end">Orario fine</label>
-                            <input class="form-control shadow-input" type="time" name="event_end" id="event_end" placeholder="Fine" value="{{old('event_end', $event->event_end)}}" required>
+                            <input class="form-control shadow-input" type="time" name="event_end" id="event_end" placeholder="Fine" value="{{old('event_end', \Carbon\Carbon::parse($event->event_end)->format('H:i'))}}" required>
                             @error('event_end')
                                 <div class="text-danger">{{$message}}</div>
                             @enderror
@@ -182,7 +182,7 @@
                     </div>
 
                     <div class="text-end my-4 mx-3">
-                        <button type="submit" class="btn btn-primary">Salva evento</button>
+                        <button type="submit" class="btn-save button-font button-bgcolor">Salva</button>
                     </div>
 
 
