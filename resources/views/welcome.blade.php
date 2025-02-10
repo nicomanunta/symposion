@@ -21,91 +21,63 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased general-bgcolor vh-100">
-        <header>
-            <div class="container">
-                <div class="row py-3 align-items-center">
-                    <div class="col-6">
-                        <a class=" " href="{{ route('admin.events.index') }}">
-                            <img style="width: 40%" src="{{URL::asset('/img/logo-orizzontale-bianco.jpeg')}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        @if (Route::has('login'))
-                            <nav class="flex  justify-end me-4">
-                                @auth
-                                    <a
-                                        href="{{ url('/events') }}"
-                                        class="text-decoration-none subtitle-font text-color link-nav-center  "
-                                    >
-                                        Homepage
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="text-decoration-none subtitle-font text-color link-nav-center me-2"
-                                    >
-                                        Accedi
-                                    </a>
+    <body class="  general-bgcolor vh-100 overflow-hidden">
+        
+        <main class="vh-100 d-flex justify-content-center align-items-center">
+            <div class="container mb-5">
+                <div class="row my-5 align-items-center ">
+                    <div class="col-6 d-flex justify-content-center">
+                        <div class="section-login-bgcolor px-5 py-4 w-75 ">
+                            <div class="d-flex justify-content-center mb-4 mt-3">
 
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="text-decoration-none subtitle-font text-color link-nav-center ms-2"
-                                        >
-                                            Registrati
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="container">
-                <div class="row mt-5">
-                    <div class="col-6 d-flex justify-content-center">
+                                <img style="width: 70%"  src="{{URL::asset('/img/logo-orizzontale-giallo.jpeg')}}" alt="">
+                            </div>
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
                         
+                                <!-- Email Address -->
+                                <div>
+                                    
+                                    <label class="mb-1 label-form" for="email">Email</label>
+                                    <input class="form-control shadow-input" type="email" name="email" id="email"value="{{old('email')}}" required>
+
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
+                        
+                                <!-- Password -->
+                                <div class="mt-3 ">
+                                    <label class="mb-1 label-form" for="password">Password</label>
+                                    <input class="form-control shadow-input" type="password" name="password" id="password"value="{{old('password')}}" required>
+                                    
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                </div>
+                                <div class="text-center mt-4 ">
+
+                                    <button type="submit" class=" text-center button-bgcolor btn-save fw-bold">
+                                        {{ __('Accedi') }}
+                                    </button >
+                                </div>
+                                
+                        
+                                <div class="flex items-center justify-center mt-5">
+                                    <p class="fs-register-text">Non hai un account?
+                                        <a class="link-red" href="{{route('register')}}">
+                                            Iscriviti
+                                        </a>
+                                    </p>
+                        
+                                   
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-6 d-flex justify-content-center">
+                    <div class="col-6 d-flex justify-content-start">
                         <div class="video-logo "></divs>
                     </div>
                 </div>
-                <div class="row">
-                    ciao
-                </div>
+                
             </div>
         </main>
     </body>
     
 </html>
-{{-- @if (Route::has('login'))
-                            <nav class="-mx-3 flex  justify-end">
-                                @auth
-                                    <a
-                                        href="{{ url('/events') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Dashboard
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Accedi
-                                    </a>
-
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Registrati
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif --}}
