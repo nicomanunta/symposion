@@ -1,7 +1,7 @@
 <x-style-layout>
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-9 mt-3 mb-3 px-4  section-bgcolor">
+            <div class="col-9 mt-3 mb-3 px-4  ">
                 <h1 class="mb-3 mt-2 text-center title-font title-color text-uppercase">Crea il tuo evento</h1>
                 {{-- FORM CREAZIONE EVENTO --}}
                 <form action="{{route('admin.events.store')}}" method="post" enctype="multipart/form-data">
