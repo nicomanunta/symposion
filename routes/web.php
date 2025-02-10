@@ -29,6 +29,8 @@ Route::middleware('auth', 'verified')->name('admin.')->group(function () {
 
 
 Route::post('/favorites/toggle', [FavoriteController::class, 'toggleFavorite'])->name('favorites.toggle');
+Route::get('/users/{user}', [ProfileController::class, 'usersProfile'])->name('profile.users');
+
 
 
 
