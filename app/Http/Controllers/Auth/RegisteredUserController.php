@@ -29,6 +29,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validazione dei dati del form
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
@@ -37,10 +38,18 @@ class RegisteredUserController extends Controller
             'region' => ['required', 'string', 'max:50'],
             'city' => ['required', 'string', 'max:50'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'img' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-
+            'user_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'], // Assicurati che il nome del campo sia corretto
         ]);
+    
+        
+        $userImgPath = null;
+        if ($request->hasFile('img')) {
+            $userImgPath = $request->file('img')->store('user_img', 'public');
+            
+        }
+       
 
+        // Crea l'utente nel database
         $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -49,13 +58,17 @@ class RegisteredUserController extends Controller
             'region' => $request->region,
             'city' => $request->city,
             'password' => Hash::make($request->password),
-            'img' => $request->img,
+            'img' => $userImgPath, // Salva il percorso dell'immagine (non solo 'img' come nel tuo codice)
         ]);
-
+    
+        // Esegui l'evento di registrazione
         event(new Registered($user));
-
+    
+        // Logga l'utente appena creato
         Auth::login($user);
-
+    
+        // Reindirizza alla pagina successiva
         return redirect(route('admin.events.index', absolute: false));
     }
+    
 }

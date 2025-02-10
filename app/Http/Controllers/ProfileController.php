@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Event;
+use App\Models\User;
 use App\Http\Controllers\Admin\EventController;
 use App\Models\Gallery;
 
@@ -20,6 +21,12 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function usersProfile($userId)
+    {
+        $user = User::findOrFail($userId);
+       return view('profile.users', compact('user'));
+    }
+
     public function show()
     {
         $user = auth()->user(); // Ottieni l'utente autenticato

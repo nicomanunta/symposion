@@ -128,7 +128,7 @@
                             
                             <p class="mb-2">{{ $selectedEvent->event_description }} Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus quia ab et libero fugiat pariatur, laboriosam provident recusandae voluptatum autem, dolor explicabo itaque dignissimos laborum voluptatem ipsam mollitia, soluta nesciunt.</p>
 
-                            <div class="text-end me-3 fs-5 text-price mb-5">
+                            <div class="text-end me-3 fs-5 text-price mb-4">
                                 @if ($selectedEvent->event_price == 0)
                                     <b>Gratis</b>
                                 @else 
@@ -136,7 +136,7 @@
                                 @endif
                             </div>
 
-                            <div class=" d-flex justify-content-between mt-3">
+                            <div class=" d-flex justify-content-between ">
                                 <div>
                                     <span>Location: <b>{{$selectedEvent->eventLocation->location_name}}</b></span>
                                     <br>
@@ -146,6 +146,24 @@
                                     <span>Orario inizio: <b>{{ \Carbon\Carbon::parse($selectedEvent->event_start)->format('H:i') }}</b></span>
                                     <br>
                                     <span>Orario fine: <b>{{ \Carbon\Carbon::parse($selectedEvent->event_end)->format('H:i') }}</b></span>
+                                </div>
+                            </div>
+                            <div class="mt-5 text-font text-color">
+                                <h5 class=" fw-bold">Contatti</h5>
+                                <div>
+                                    <a href="{{ route('profile.users', ['user' => $event->user->id]) }}">
+                                        @if ($event->user->img != null)
+                                            <img class="ms-2 profile-img text-center" src="{{ asset('storage/' . $user->img) }}" alt="Foto del dipendente">   
+                                        @else
+                                            <img class="profile-img" src="{{URL::asset('/img/yellow-profile-img.png')}}" alt="">
+                                        @endif
+                                        <span>Creatore: <b>{{$event->user->name}} {{$event->user->surname}}</b></span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span>Email: <b>{{$selectedEvent->user->email}}</b></span>
+                                    <br>
+                                    <span>Telefono: <b>{{$selectedEvent->user->phone}}</b></span>
                                 </div>
                             </div>
                         </div>
