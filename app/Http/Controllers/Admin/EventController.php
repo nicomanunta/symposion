@@ -23,7 +23,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = Event::with(['eventLocation', 'eventDressCode', 'user'])->get();
+        $events = Event::with(['eventLocation', 'eventDressCode', 'user'])->orderBy('events.created_at', 'desc')->get();
 
        
         // recupero tutte le immagini per tutti gli eventi (a sinistra)

@@ -222,7 +222,9 @@
                                         @if ($selectedEvent->user->img)
                                             <img class=" profile-img-show text-center my-1" src="{{ asset('storage/' . $selectedEvent->user->img) }}" alt="Foto del creatore">   
                                         @else
-                                            <img class="profile-img-show my-2" src="{{ URL::asset('/img/yellow-profile-img.png') }}" alt="Foto del creatore">@endif<span class="ms-2 text-color text-font"><b>{{ $selectedEvent->user->name }} {{ $selectedEvent->user->surname }}</b></span>
+                                            <img class="profile-img-show my-2" src="{{ URL::asset('/img/yellow-profile-img.png') }}" alt="Foto del creatore">
+                                        @endif
+                                        <span class="ms-2 text-color text-font"><b>{{ $selectedEvent->user->name }} {{ $selectedEvent->user->surname }}</b></span>
                                     </a>     
                                 </div>
                                 

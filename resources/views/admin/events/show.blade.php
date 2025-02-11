@@ -18,17 +18,18 @@
                                  <i class="fa-regular fa-star star-vuota"></i> <span>Salva</span>
                            @endif
                         </button>
-                        
-                        <button class="button-bgcolor mx-3 btn-star-show-event-profile button-font">
-                           <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
-                              Modifica evento
-                           </a>
-                        </button>
-                        <button class="button-bgcolor btn-star-show-event-profile button-font">
-                           <a class="text-decoration-none color-button-show" href="">
-                              Elimina
-                           </a>
-                        </button>
+                        @if (Auth::check() && Auth::id() === $event->user_id)
+                           <button class="button-bgcolor mx-3 btn-star-show-event-profile button-font">
+                              <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
+                                 Modifica evento
+                              </a>
+                           </button>
+                           <button class="button-bgcolor btn-star-show-event-profile button-font">
+                              <a class="text-decoration-none color-button-show" href="">
+                                 Elimina
+                              </a>
+                           </button>
+                        @endif
                      </div>
                   </form>
             </div>
@@ -87,18 +88,20 @@
                      </div>
                   </div>
             </div>
-            <div class="mt-5 ps-3">
-               <button class="button-bgcolor me-3 btn-star-show-event-profile button-font">
-                  <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
-                     Modifica evento
-                  </a>
-               </button>
-               <button class="button-bgcolor btn-star-show-event-profile button-font">
-                  <a class="text-decoration-none color-button-show" href="">
-                     Elimina
-                  </a>
-               </button>
-            </div>
+            @if (Auth::check() && Auth::id() === $event->user_id)
+               <div class="mt-5 ps-3">
+                  <button class="button-bgcolor me-3 btn-star-show-event-profile button-font">
+                     <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
+                        Modifica evento
+                     </a>
+                  </button>
+                  <button class="button-bgcolor btn-star-show-event-profile button-font">
+                     <a class="text-decoration-none color-button-show" href="">
+                        Elimina
+                     </a>
+                  </button>
+               </div>
+            @endif
          </div>
       </div>
    </div> 
@@ -106,5 +109,33 @@
       function changeMainImage(image) {
          document.getElementById('mainImage').src = image.src;
       }
+      document.getElementById('favoriteButton').addEventListener('click', function () {
+        let formData = new FormData(document.getElementById('favoriteForm'));
+
+        fetch("{{ route('favorites.toggle') }}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+        }).then(response => response.json())
+        .then(data => {
+            let button = document.getElementById('favoriteButton');
+            let icon = button.querySelector("i");
+            let text = button.querySelector("span");
+
+            if (data.status === 'added') {
+                icon.classList.remove("fa-regular", "star-vuota");
+                icon.classList.add("fa-solid", "star-piena");
+                text.innerText = "Rimuovi";
+            } else if (data.status === 'removed') {
+                icon.classList.remove("fa-solid", "star-piena");
+                icon.classList.add("fa-regular", "star-vuota");
+                text.innerText = "Salva";
+            }
+        })
+        .catch(error => console.error("Errore:", error));
+        
+    });
     </script>   
 </x-style-layout>

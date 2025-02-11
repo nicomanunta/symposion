@@ -10,7 +10,7 @@ class Event extends Model
 
     // relazione con tabella users
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // relazione con tabella event_locations

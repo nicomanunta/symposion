@@ -21,16 +21,24 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    
     public function usersProfile($userId)
     {
         $user = User::findOrFail($userId);
-       return view('profile.users', compact('user'));
+        $events = Event::with(['eventLocation', 'eventDressCode'])->where('user_id', $user->id)->get();
+    
+        $allGalleriesProfile = Gallery::whereIn('event_id', $events->pluck('id'))->get();
+
+        $createdEventsCount = $user->events()->count();
+        
+
+       return view('profile.users', compact('user', 'createdEventsCount', 'events', 'allGalleriesProfile'));
     }
 
     public function show()
     {
         $user = auth()->user(); // Ottieni l'utente autenticato
-        $events = Event::with(['eventLocation', 'eventDressCode'])->get();
+        $events = Event::with(['eventLocation', 'eventDressCode'])->where('user_id', $user->id)->get();
         $allGalleriesProfile = Gallery::whereIn('event_id', $events->pluck('id'))->get();
 
 
