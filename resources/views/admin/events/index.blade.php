@@ -133,7 +133,7 @@
                             </a>
                         </div>
                     @endforeach
-
+                    
 
                 </div>
                     
@@ -214,24 +214,27 @@
                                 <span>Orario fine: <b>{{ \Carbon\Carbon::parse($selectedEvent->event_end)->format('H:i') }}</b></span>
                             </div>
                         </div>
-                        <div class="mt-5 text-font text-color">
-                            <h5 class=" fw-bold">Contatti</h5>
-                            <div>
-                                <a href="{{ auth()->user()->id == $event->user->id ? route('profile.show') : route('profile.users', ['user' => $event->user->id]) }}">
-                                    @if ($event->user->img != null)
-                                        <img class="ms-2 profile-img text-center" src="{{ asset('storage/' . $event->user->img) }}" alt="Foto del dipendente">   
-                                    @else
-                                        <img class="profile-img" src="{{URL::asset('/img/yellow-profile-img.png')}}" alt="">
-                                    @endif
-                                    <span>Creatore: <b>{{$event->user->name}} {{$event->user->surname}}</b></span>
-                                </a>
+                        <div class="mt-5 text-font text-color ">
+                            <h4 class=" fw-bold mb-3">Contatti</h4>
+                            <div class="d-flex">
+                                <div class="col-6">
+                                    <a class="text-decoration-none" href="{{ auth()->user()->id == $selectedEvent->user->id ? route('profile.show') : route('profile.users', ['user' => $selectedEvent->user->id]) }}">
+                                        @if ($selectedEvent->user->img)
+                                            <img class=" profile-img-show text-center my-1" src="{{ asset('storage/' . $selectedEvent->user->img) }}" alt="Foto del creatore">   
+                                        @else
+                                            <img class="profile-img-show my-2" src="{{ URL::asset('/img/yellow-profile-img.png') }}" alt="Foto del creatore">@endif<span class="ms-2 text-color text-font"><b>{{ $selectedEvent->user->name }} {{ $selectedEvent->user->surname }}</b></span>
+                                    </a>     
+                                </div>
+                                
+                                <div class="col-6 ">
+                                    <div class="my-1">Email: <b>{{$selectedEvent->user->email}}</b></div>
+                                
+                                    <div class="my-1">Telefono: <b>{{$selectedEvent->user->phone}}</b></div>
+                                </div>
+
                             </div>
-                            
-                            <div>
-                                <span>Email: <b>{{$event->user->email}}</b></span>
-                                <br>
-                                <span>Telefono: <b>{{$event->user->phone}}</b></span>
-                            </div>
+                  
+
                         </div>
                     </div>
                 </div>
