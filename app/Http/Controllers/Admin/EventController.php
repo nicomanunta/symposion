@@ -169,6 +169,21 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        // elimino immagini collegate a questo evento
+        $galleries = $event->galleries;
+        foreach ($galleries as $gallery) {
+            if ($gallery->image_path) {
+                Storage::delete($gallery->image_path);
+            }
+            $gallery->delete(); 
+        }
+
+        // rimuovo evento dai preferiti
+        $event->favoritedByUsers()->detach();
+
+        // elimino l'evento
+        $event->delete();
+        
+        return redirect()->route('admin.events.index');
     }
 }

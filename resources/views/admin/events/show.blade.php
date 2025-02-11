@@ -6,32 +6,30 @@
 
             </div>
             <div class="p-3 mt-4 mb-3 position-relative ">
-                  <h2 class="title-font title-color  text-start mb-1 title-show">{{ $event->event_title }}</h2>
-                  <form id="favoriteForm" action="{{ route('favorites.toggle') }}" method="POST">
+               <h2 class="title-font title-color  text-start mb-1 title-show">{{ $event->event_title }}</h2>
+               <div class="position-absolute position-button">
+                  <form id="favoriteForm" action="{{ route('favorites.toggle') }}" method="POST" class="d-inline">
                      @csrf
                      <input type="hidden" name="event_id" value="{{ $event->id }}">
-                     <div class="position-absolute position-button">
-                        <button type="button" id="favoriteButton" class=" btn-star-show-event-profile button-font button-bgcolor">
-                           @if (auth()->user()->favoriteEvents->contains($event->id))
-                                 <i class="fa-solid fa-star star-piena"></i> <span>Rimuovi</span>
-                           @else
-                                 <i class="fa-regular fa-star star-vuota"></i> <span>Salva</span>
-                           @endif
-                        </button>
-                        @if (Auth::check() && Auth::id() === $event->user_id)
-                           <button class="button-bgcolor mx-3 btn-star-show-event-profile button-font">
-                              <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
-                                 Modifica evento
-                              </a>
-                           </button>
-                           <button class="button-bgcolor btn-star-show-event-profile button-font">
-                              <a class="text-decoration-none color-button-show" href="">
-                                 Elimina
-                              </a>
-                           </button>
+                     <button type="button" id="favoriteButton" class=" btn-star-show-event-profile button-font button-bgcolor">
+                        @if (auth()->user()->favoriteEvents->contains($event->id))
+                              <i class="fa-solid fa-star star-piena"></i> <span>Rimuovi</span>
+                        @else
+                              <i class="fa-regular fa-star star-vuota"></i> <span>Salva</span>
                         @endif
-                     </div>
+                     </button>
                   </form>
+                  @if (Auth::check() && Auth::id() === $event->user_id)
+                     <button class="button-bgcolor mx-3 btn-star-show-event-profile button-font">
+                        <a class="text-decoration-none color-button-show" href="{{route('admin.events.edit', ['event' => $event->id])}}">
+                           Modifica evento
+                        </a>
+                     </button>
+                     <button class="button-bgcolor btn-star-show-event-profile button-font"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Elimina
+                     </button>
+                  @endif
+               </div>
             </div>
             <div class="img-gallery-show pb-3 px-3  ">
                   <!--immagine principale -->
@@ -95,16 +93,17 @@
                         Modifica evento
                      </a>
                   </button>
-                  <button class="button-bgcolor btn-star-show-event-profile button-font">
-                     <a class="text-decoration-none color-button-show" href="">
-                        Elimina
-                     </a>
+                  
+                  <button class="button-bgcolor btn-star-show-event-profile button-font"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                     Elimina
                   </button>
+                  
                </div>
             @endif
          </div>
       </div>
    </div> 
+   @include('admin.events.partials.modal_delete_event', ['event_id' => $event->id])
    <script>
       function changeMainImage(image) {
          document.getElementById('mainImage').src = image.src;
