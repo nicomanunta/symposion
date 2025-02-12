@@ -7,7 +7,7 @@
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center {{ request('event_region') ? 'filter-active' : '' }}">
                             <label class="text-font text-color fw-bold" for="event_region">Dove</label>
                             <select name="event_region" class="select-filter py-0" onchange="this.form.submit()">
-                                <option class="" value="">Filtra regione</option>
+                                <option class="" value="">Filtra per regione</option>
                                 @foreach ($regions as $region)
                                     <option value="{{ $region }}" {{ request('event_region') == $region ? 'selected' : '' }}>
                                         {{ $region }}
@@ -28,7 +28,7 @@
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center {{ request('event_location') ? 'filter-active' : '' }}">
                             <label class="text-font text-color fw-bold" for="event_location">In quale location</label>
                             <select name="event_location" class="select-filter py-0" onchange="this.form.submit()">
-                                <option value="">Filtra location</option>
+                                <option value="">Filtra per location</option>
                                 @foreach ($locations as $location)
                                     <option value="{{ $location }}" {{ request('event_location') == $location ? 'selected' : '' }}>{{ $location }}</option>
                                 @endforeach
@@ -38,7 +38,7 @@
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter  text-center {{ request('event_dress_code') ? 'filter-active' : '' }} ">
                             <label class="text-font text-color fw-bold" for="event_dress_code">Come mi vesto</label>
                             <select name="event_dress_code" class="select-filter py-0" onchange="this.form.submit()">
-                                <option value="">Filtra dress code</option>
+                                <option value="">Filtra per dress code</option>
                                 @foreach ($dress_codes as $dress_code)
                                     <option value="{{$dress_code}}" {{ request('event_dress_code') == $dress_code ? 'selected' : '' }}>{{$dress_code}}</option>
                                 @endforeach 
@@ -53,13 +53,6 @@
                                 <option value="desc" {{ request('order_by_price') == 'desc' ? 'selected' : '' }}>Dal più caro</option>    
                             </select>
                         </div>
-                        {{--
-                        
-                        <div class="col-1  ms-1 text-center d-flex justify-content-center align-items-center">
-                            <button type="submit" class="btn-search button-bgcolor text-color fw-bold w-100 h-100">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div> --}}
                     </div>
                 </div>   
             </div>
