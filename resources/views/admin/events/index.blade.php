@@ -1,64 +1,66 @@
 <x-app-layout>
     <div class="container mt-3 mb-4  filters-row ">
-        <div class="row ">
-            <div class="col-12">
-                <div class="row py-2 d-flex justify-content-center">
-                    
-                    <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
-                        <label class="text-font text-color fw-bold" for="event_region">Dove</label>
-                        <select name="event_region" class="select-filter py-0">
-                            <option class="" value="">Filtra regione</option>
-                            @foreach ($events as $event)
-                                <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                            @endforeach 
-                        </select>
+        <form action="{{ route('admin.events.index') }}" method="GET">
+            <div class="row ">
+                <div class="col-12">
+                    <div class="row py-2 d-flex justify-content-center">
+                        <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
+                            <label class="text-font text-color fw-bold" for="event_region">Dove</label>
+                            <select name="event_region" class="select-filter py-0" onchange="this.form.submit()">
+                                <option class="" value="">Filtra regione</option>
+                                @foreach ($regions as $region)
+                                    <option value="{{ $region }}" {{ request('event_region') == $region ? 'selected' : '' }}>
+                                        {{ $region }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
+                            <label class="text-font text-color fw-bold" for="event_region">Quando</label>
+                            <select name="event_region" class="select-filter py-0 py-0">
+                                <option value="">Filtra data</option>
+                                @foreach ($events as $event)
+                                    <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
+                                @endforeach 
+                            </select>
+                        </div>
+                        <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
+                            <label class="text-font text-color fw-bold" for="event_region">In quale location</label>
+                            <select name="event_region" class="select-filter py-0">
+                                <option value="">Filtra location</option>
+                                @foreach ($events as $event)
+                                    <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
+                                @endforeach 
+                            </select>
+                        </div>
+                        <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter  text-center ">
+                            <label class="text-font text-color fw-bold" for="event_region">Come mi vesto</label>
+                            <select name="event_region" class="select-filter py-0">
+                                <option value="">Filtra dress code</option>
+                                @foreach ($events as $event)
+                                    <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
+                                @endforeach 
+                            </select>
+                        </div>
+                        
+                        <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
+                            <label class="text-font text-color fw-bold" for="event_region">Quanto costa</label>
+                            <select name="event_region" class="select-filter py-0">
+                                <option value="">Filtra prezzo</option>
+                                @foreach ($events as $event)
+                                    <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
+                                @endforeach 
+                            </select>
+                        </div>
+                        <div class="col-1  ms-1 text-center d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn-search button-bgcolor text-color fw-bold w-100 h-100">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div> --}}
                     </div>
-                    <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
-                        <label class="text-font text-color fw-bold" for="event_region">Quando</label>
-                        <select name="event_region" class="select-filter py-0 py-0">
-                            <option value="">Filtra data</option>
-                            @foreach ($events as $event)
-                                <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                            @endforeach 
-                        </select>
-                    </div>
-                    <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
-                        <label class="text-font text-color fw-bold" for="event_region">In quale location</label>
-                        <select name="event_region" class="select-filter py-0">
-                            <option value="">Filtra location</option>
-                            @foreach ($events as $event)
-                                <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                            @endforeach 
-                        </select>
-                    </div>
-                    <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter  text-center ">
-                        <label class="text-font text-color fw-bold" for="event_region">Come mi vesto</label>
-                        <select name="event_region" class="select-filter py-0">
-                            <option value="">Filtra dress code</option>
-                            @foreach ($events as $event)
-                                <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                            @endforeach 
-                        </select>
-                    </div>
-                    
-                    <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
-                        <label class="text-font text-color fw-bold" for="event_region">Quanto costa</label>
-                        <select name="event_region" class="select-filter py-0">
-                            <option value="">Filtra prezzo</option>
-                            @foreach ($events as $event)
-                                <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                            @endforeach 
-                        </select>
-                    </div>
-                    <div class="col-1  ms-1 text-center d-flex justify-content-center align-items-center">
-                        <button type="submit" class="btn-search button-bgcolor text-color fw-bold w-100 h-100">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                </div>
+                </div>   
             </div>
-            
-        </div>
+        </form>
     </div>
 
     <div class="container d-flex ">

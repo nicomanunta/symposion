@@ -23,27 +23,36 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = Event::with(['eventLocation', 'eventDressCode', 'user'])->orderBy('events.created_at', 'desc')->get();
+        // Inizializza la query di base per gli eventi
+        $query = Event::with(['eventLocation', 'eventDressCode', 'user'])->orderBy('events.created_at', 'desc');
 
-       
-        // recupero tutte le immagini per tutti gli eventi (a sinistra)
+        $regions = Event::pluck('event_region')->unique()->sort();
+
+        // Aggiungi il filtro per regione se presente nella richiesta
+        if ($request->has('event_region') && $request->event_region != '') {
+            $query->where('event_region', $request->event_region);
+        }
+
+        // Recupera gli eventi dopo aver applicato il filtro
+        $events = $query->get();
+
+        // Recupera tutte le immagini per tutti gli eventi
         $allGalleries = Gallery::whereIn('event_id', $events->pluck('id'))->get();
 
-        // recupero solo le immagini dell'evento slezionato (a destra)
+        // Recupera solo le immagini dell'evento selezionato
         $selectedEvent = null;
         $selectedGalleries = collect(); 
 
         if ($request->has('event')) {
             $selectedEvent = Event::with(['eventLocation', 'eventDressCode', 'user'])->find($request->input('event'))->fresh();
-            
-
             if ($selectedEvent) {
                 $selectedGalleries = $selectedEvent->galleries;
             }
         }
-    
-        return view('admin.events.index', compact('events', 'allGalleries', 'selectedEvent', 'selectedGalleries'));
+
+        return view('admin.events.index', compact('events', 'allGalleries', 'selectedEvent', 'selectedGalleries', 'regions'));
     }
+
     
     
 
