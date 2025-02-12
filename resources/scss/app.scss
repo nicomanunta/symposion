@@ -635,3 +635,11 @@ h5.title-color{
 }
 
 
+.filter-active{
+    // background-color: #d1b93f3c;    
+    border-right: 0px;
+    border-left: 0px;
+    box-shadow: 5px 5px 0px #e24b40; 
+    transition: box-shadow 0.3s;
+
+}

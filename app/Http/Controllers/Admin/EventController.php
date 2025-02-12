@@ -26,19 +26,48 @@ class EventController extends Controller
         
         $query = Event::with(['eventLocation', 'eventDressCode', 'user']);
 
-        // recupera le regioni utilizzate
-        $regions = Event::pluck('event_region')->unique()->sort();
+        
+        
+        
+        // FILTRI
+            // recupera le regioni utilizzate
+            $regions = Event::pluck('event_region')->unique()->sort();
+            // recupera le locations utilizzate
+            $locations = Event::with('eventLocation')->get()->pluck('eventLocation.location_name')->unique()->sort();
+            // recupera le dress codes utilizzate
+            $dress_codes = Event::with('eventDressCode')->get()->pluck('eventDressCode.dress_code_name')->unique()->sort();
 
-        // filtro regione se presente
-        if ($request->has('event_region') && $request->event_region != '') {
-            $query->where('event_region', $request->event_region);
-        }
-        // filtro ordinare per data se presente
-        if ($request->has('order_by_date') && in_array($request->order_by_date, ['asc', 'desc'])) {
-            $query->orderBy('event_date', $request->order_by_date);
-        }else {
-            $query->orderBy('created_at', 'desc');
-        }
+
+            // filtro regione se presente
+            if ($request->has('event_region') && $request->event_region != '') {
+                $query->where('event_region', $request->event_region);
+            }
+            // filtro ordinare per data se presente
+            // if ($request->has('order_by_date') && in_array($request->order_by_date, ['asc', 'desc'])) {
+            //     $query->orderBy('event_date', $request->order_by_date);
+            // }else {
+            //     $query->orderBy('created_at', 'desc');
+            // }
+            // filtro location se presente
+            if ($request->has('event_location') && $request->event_location != '') {
+                $query->whereHas('eventLocation', function ($q) use ($request) {
+                    $q->where('location_name', $request->event_location);
+                });
+            }
+            // filtro dress_code se presente
+            if ($request->has('event_dress_code') && $request->event_dress_code != '') {
+                $query->whereHas('eventDressCode', function ($q) use ($request) {
+                    $q->where('dress_code_name', $request->event_dress_code);
+                });
+            }
+            // filtro ordinare per prezzo se presente
+            if ($request->has('order_by_price') && in_array($request->order_by_price, ['asc', 'desc'])) {
+                $query->orderBy('event_price', $request->order_by_price);
+            }else {
+                $query->orderBy('created_at', 'desc');
+            }
+
+
 
         // eventi dopo aver applicato il filtro
         $events = $query->get();
@@ -57,7 +86,7 @@ class EventController extends Controller
             }
         }
 
-        return view('admin.events.index', compact('events', 'allGalleries', 'selectedEvent', 'selectedGalleries', 'regions'));
+        return view('admin.events.index', compact('events', 'allGalleries', 'selectedEvent', 'selectedGalleries', 'regions', 'locations', 'dress_codes'));
     }
 
     
