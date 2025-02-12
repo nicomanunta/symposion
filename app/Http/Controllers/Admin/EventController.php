@@ -23,23 +23,30 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        // Inizializza la query di base per gli eventi
-        $query = Event::with(['eventLocation', 'eventDressCode', 'user'])->orderBy('events.created_at', 'desc');
+        
+        $query = Event::with(['eventLocation', 'eventDressCode', 'user']);
 
+        // recupera le regioni utilizzate
         $regions = Event::pluck('event_region')->unique()->sort();
 
-        // Aggiungi il filtro per regione se presente nella richiesta
+        // filtro regione se presente
         if ($request->has('event_region') && $request->event_region != '') {
             $query->where('event_region', $request->event_region);
         }
+        // filtro ordinare per data se presente
+        if ($request->has('order_by_date') && in_array($request->order_by_date, ['asc', 'desc'])) {
+            $query->orderBy('event_date', $request->order_by_date);
+        }else {
+            $query->orderBy('created_at', 'desc');
+        }
 
-        // Recupera gli eventi dopo aver applicato il filtro
+        // eventi dopo aver applicato il filtro
         $events = $query->get();
 
-        // Recupera tutte le immagini per tutti gli eventi
+        // immagini per tutti gli eventi
         $allGalleries = Gallery::whereIn('event_id', $events->pluck('id'))->get();
 
-        // Recupera solo le immagini dell'evento selezionato
+        // immagini dell'evento selezionato
         $selectedEvent = null;
         $selectedGalleries = collect(); 
 

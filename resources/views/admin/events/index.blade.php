@@ -15,15 +15,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{-- <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
-                            <label class="text-font text-color fw-bold" for="event_region">Quando</label>
-                            <select name="event_region" class="select-filter py-0 py-0">
-                                <option value="">Filtra data</option>
-                                @foreach ($events as $event)
-                                    <option value="{{$event->event_region}}" {{ request('event_region') == $event->event_region ? 'selected' : '' }}>{{$event->event_region}}</option>
-                                @endforeach 
+                        <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
+                            <label class="text-font text-color fw-bold" for="order_by_date">Quando</label>
+                            <select name="order_by_date" class="select-filter py-0 py-0" onchange="this.form.submit()">
+                                <option value="">Ordina per data</option>
+                                <option value="asc" {{ request('order_by_date') == 'asc' ? 'selected' : '' }}>Dal più recente</option>
+                                <option value="desc" {{ request('order_by_date') == 'desc' ? 'selected' : '' }}>Dal meno recente</option>    
                             </select>
                         </div>
+                        {{--
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center ">
                             <label class="text-font text-color fw-bold" for="event_region">In quale location</label>
                             <select name="event_region" class="select-filter py-0">
