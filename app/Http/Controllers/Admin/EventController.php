@@ -42,30 +42,36 @@ class EventController extends Controller
             if ($request->has('event_region') && $request->event_region != '') {
                 $query->where('event_region', $request->event_region);
             }
+
             // filtro ordinare per data se presente
-            // if ($request->has('order_by_date') && in_array($request->order_by_date, ['asc', 'desc'])) {
-            //     $query->orderBy('event_date', $request->order_by_date);
-            // }else {
-            //     $query->orderBy('created_at', 'desc');
-            // }
+            if ($request->has('order_by_date') && in_array($request->order_by_date, ['asc', 'desc'])) {
+                $query->orderBy('event_date', $request->order_by_date);
+                // rimuovi filtro 'order_by_price' dalla query
+                $request->merge(['order_by_price' => '']);
+            }
+            // filtro ordinare per prezzo se presente
+            elseif ($request->has('order_by_price') && in_array($request->order_by_price, ['asc', 'desc'])) {
+                $query->orderBy('event_price', $request->order_by_price);
+                // rimuovi il filtro 'order_by_date' dalla query
+                $request->merge(['order_by_date' => '']);
+            }else {
+                $query->orderBy('created_at', 'desc');
+            }
+
             // filtro location se presente
             if ($request->has('event_location') && $request->event_location != '') {
                 $query->whereHas('eventLocation', function ($q) use ($request) {
                     $q->where('location_name', $request->event_location);
                 });
             }
+
             // filtro dress_code se presente
             if ($request->has('event_dress_code') && $request->event_dress_code != '') {
                 $query->whereHas('eventDressCode', function ($q) use ($request) {
                     $q->where('dress_code_name', $request->event_dress_code);
                 });
             }
-            // filtro ordinare per prezzo se presente
-            if ($request->has('order_by_price') && in_array($request->order_by_price, ['asc', 'desc'])) {
-                $query->orderBy('event_price', $request->order_by_price);
-            }else {
-                $query->orderBy('created_at', 'desc');
-            }
+            
 
 
 

@@ -1,12 +1,12 @@
 <x-app-layout>
     <div class="container mt-3 mb-4  filters-row ">
-        <form action="{{ route('admin.events.index') }}" method="GET">
+        <form action="{{ route('admin.events.index') }}" method="GET" id="filter-form">
             <div class="row ">
                 <div class="col-12">
                     <div class="row py-2 d-flex justify-content-center">
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center {{ request('event_region') ? 'filter-active' : '' }}">
                             <label class="text-font text-color fw-bold" for="event_region">Dove</label>
-                            <select name="event_region" class="select-filter py-0" onchange="this.form.submit()">
+                            <select name="event_region" class="select-filter py-0" onchange="handleFilterChange('order_by_date')">
                                 <option class="" value="">Filtra per regione</option>
                                 @foreach ($regions as $region)
                                     <option value="{{ $region }}" {{ request('event_region') == $region ? 'selected' : '' }}>
@@ -47,7 +47,7 @@
 
                         <div class="col-2 mx-1 little-section-bgcolor p-2 border-filter text-center {{ request('order_by_price') ? 'filter-active' : '' }}">
                             <label class="text-font text-color fw-bold" for="order_by_price">Quanto costa</label>
-                            <select name="order_by_price" class="select-filter py-0" onchange="this.form.submit()">
+                            <select name="order_by_price" class="select-filter py-0" onchange="handleFilterChange('order_by_price')">
                                 <option value="">Ordina per prezzo</option>
                                 <option value="asc" {{ request('order_by_price') == 'asc' ? 'selected' : '' }}>Dal meno caro</option>
                                 <option value="desc" {{ request('order_by_price') == 'desc' ? 'selected' : '' }}>Dal più caro</option>    
@@ -293,7 +293,19 @@
         }
     });
 
-   
+    function handleFilterChange(selectedFilter) {
+        let form = document.getElementById('filter-form');
+
+        if (selectedFilter === 'order_by_date') {
+            // resetta l'altro filtro
+            form.querySelector('select[name="order_by_price"]').value = '';
+        } else if (selectedFilter === 'order_by_price') {
+            // resetta l'altro filtro
+            form.querySelector('select[name="order_by_date"]').value = '';
+        }
+
+        form.submit();
+    }
 
 </script>
 </x-app-layout>
