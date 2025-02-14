@@ -26,9 +26,6 @@ class EventController extends Controller
         
         $query = Event::with(['eventLocation', 'eventDressCode', 'user']);
 
-        
-        
-        
         // FILTRI
             // recupera le regioni utilizzate
             $regions = Event::pluck('event_region')->unique()->sort();
